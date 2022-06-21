@@ -1,6 +1,6 @@
 import React from 'react';
 import { imageData } from '../Data Constants/Data';
-import { styled, Button ,Grid} from '@mui/material';
+import { styled, Button } from '@mui/material';
 
 const Home = () => {
   return (
