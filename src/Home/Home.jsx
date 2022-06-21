@@ -102,7 +102,6 @@ const StyleDivElement = styled('div')`
     margin: 10px 20px;
     background: linear-gradient(180deg, rgba(58, 58, 58, 0.7) 5.22%, rgba(72, 72, 72, 0.4) 94.94%);
     backdrop-filter: blur(12px);
-    /* Note: backdrop-filter has minimal browser support */
     border-radius: 5px;
 
     p{
