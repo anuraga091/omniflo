@@ -3,8 +3,16 @@ import { imageData } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import useGeoLocationAPI from '../Hooks/GeoLocationAPI';
 
 const Home = () => {
+
+  const Location = useGeoLocationAPI();
+
+  const showLocationPopUp = () => {
+    console.log(Location)
+  }
+
   return (
     <div style={{backgroundColor: '#171717'}}>
         <StylePElement>Spotlight</StylePElement>
@@ -22,7 +30,7 @@ const Home = () => {
             <hr/>
             <div className='card'>
                 <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-                <Button><img src="./images/map_pin.png" alt="icon"/> Find a Store Near Me</Button>
+                <Button onClick={showLocationPopUp}><img src="./images/map_pin.png" alt="icon"/> Find a Store Near Me</Button>
             </div>
 
             <div className="story">
@@ -37,20 +45,20 @@ const Home = () => {
               <img className='image2' src={data.url} alt=""/>
               <p>{data.story}</p>
               </div>
-              <div class="logos">
-                <div class="icon">
+              <div className="logos">
+                <div className="icon">
                   <img className='logo' src="./images/icon-1.svg" alt=""/>
                     <img className='logo' src="./images/icon-2.svg" alt=""/>
                     <img  className='logo' src="./images/icon-3.svg" alt=""/>
                 </div>
-                <div class="icon-text">
+                <div className="icon-text">
                   <p className='logo-text'>No Gut Health</p>
                   <p className='logo-text'>No Bitterness</p>
                   <p className='logo-text'>Rich Aroma</p>
                 </div> 
               </div>
             </div>
-
+           
             <footer>
               <div className='footer'>
                 <img src="./images/spotlight logo.jpg" alt="spotlight logo"/>
