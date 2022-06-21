@@ -1,6 +1,6 @@
 import React from 'react';
 import { imageData } from '../Data Constants/Data';
-import { styled, Button } from '@mui/material';
+import { styled, Button ,Grid} from '@mui/material';
 
 const Home = () => {
   return (
@@ -35,16 +35,20 @@ const Home = () => {
               <img className='image2' src={data.url} alt=""/>
               <p>{data.story}</p>
               </div>
+              <div class="logos">
+                <div class="icon">
+                  <img className='logo' src="./images/icon-1.svg" alt=""/>
+                    <img className='logo' src="./images/icon-2.svg" alt=""/>
+                    <img  className='logo' src="./images/icon-3.svg" alt=""/>
+                </div>
+                <div class="icon-text">
+                  <p className='logo-text'>No Gut Health</p>
+                  <p className='logo-text'>No Bitterness</p>
+                  <p className='logo-text'>Rich Aroma</p>
+                </div> 
+              </div>
             </div>
-
-            <div>
-              <img src="" alt=""/>
-              <p></p>
-              <img src="" alt=""/>
-              <p></p>
-              <img src="" alt=""/>
-              <p></p>
-            </div>
+            
           </StyleDivElement>
         ))}
     </div>
@@ -169,6 +173,37 @@ const StyleDivElement = styled('div')`
         color: rgba(255, 255, 255, 0.6);
         margin-right: 5px;
       }
+    }
+    .logos{
+      box-sizing: border-box;
+      border: 1px solid #ADADAD;
+      border-radius: 8px;
+      margin: 10px 20px;
+      padding: 10px;
+    }
+    .icon{
+      display: flex;
+      text-align: center;
+      justify-content: space-around;
+      
+    }
+    .logo{
+      width: 30px;
+      height: 26px;
+      margin: 0px 20px;
+      
+    }
+    .icon-text{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+    .logo-text{
+      font-size: 11px;
+      margin: 0 5px;
+      color:  rgba(173, 173, 173, 1);
+      
+
     }
     
   }
