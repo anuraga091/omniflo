@@ -37,12 +37,12 @@ const Home = () => {
               <div className='heading'>
                 <img className='image1' src={data.url} alt={data.alt}/>
                 <div>
-                  <h5>STORY OF</h5> 
+                  <h4>STORY OF</h4> 
                   <p>{data.name}</p>
                 </div>
               </div>
               <div className='body'>
-              <img className='image2' src={data.url} alt=""/>
+              <img className='image2' src={data.story_img} alt="Virat Kohli"/>
               <p>{data.story}</p>
               </div>
               <div className="logos">
@@ -171,14 +171,16 @@ const StyleDivElement = styled('div')`
         margin-right: 10px;
        
       }
-      h5{
+      h4{
         margin-bottom: 0;
         font-size: 24px;
+        font-weight: 700;
       }
       p{
-        font-size: 14px;
+        font-size: 13px;
         text-transform: uppercase;
         margin-bottom: 0;
+        letter-spacing: 19%;
       }
     }
     
