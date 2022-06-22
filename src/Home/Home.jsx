@@ -41,21 +41,22 @@ const Home = () => {
                   <p>{data.name}</p>
                 </div>
               </div>
+
               <div className='body'>
-              <img className='image2' src={data.story_img} alt="Virat Kohli"/>
-              <p>{data.story}</p>
+                <img className='image2' src={data.story_img} alt="Virat Kohli"/>
+                <p>{data.story}</p>
               </div>
               <div className="logos">
-                <div className="icon">
-                  <img className='logo' src="./images/icon-1.svg" alt=""/>
+                  <div className="icon">
+                    <img className='logo' src="./images/icon-1.svg" alt=""/>
                     <img className='logo' src="./images/icon-2.svg" alt=""/>
                     <img  className='logo' src="./images/icon-3.svg" alt=""/>
-                </div>
-                <div className="icon-text">
-                  <p className='logo-text'>No Gut Health</p>
-                  <p className='logo-text'>No Bitterness</p>
-                  <p className='logo-text'>Rich Aroma</p>
-                </div> 
+                  </div>
+                  <div className="icon-text">
+                    <p className='logo-text'>No Gut Health</p>
+                    <p className='logo-text'>No Bitterness</p>
+                    <p className='logo-text'>Rich Aroma</p>
+                  </div> 
               </div>
             </div>
            
@@ -123,10 +124,15 @@ const StyleDivElement = styled('div')`
   
 
   .card{
-    margin: 10px 20px;
+    margin:  20px;
+    padding: 20px 0;
+    box-sizing: border-box;
     background: linear-gradient(180deg, rgba(58, 58, 58, 0.7) 5.22%, rgba(72, 72, 72, 0.4) 94.94%);
     backdrop-filter: blur(12px);
     border-radius: 5px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.2);
+    
 
     p{
     text-align: center;
@@ -139,11 +145,12 @@ const StyleDivElement = styled('div')`
     button{
       background: linear-gradient(90deg, #3F0BDB 0%, #FF0C67 100%);
       border-radius: 5px;
-      margin: 10px 20px 30px 20px;
+      margin: 10px 20px 20px 20px;
       font-weight: 600;
       font-size: 16px;
       text-transform: none;
       color: #fff;
+      font-family: 'Poppins', sans-serif;
 
       img{
         width: 24px;
@@ -154,11 +161,13 @@ const StyleDivElement = styled('div')`
   }
 
   .story{
-     background: linear-gradient(180deg, rgba(58, 58, 58, 0.7) 5.22%, rgba(72, 72, 72, 0.4) 94.94%);
-     backdrop-filter: blur(12px);
-     border-radius: 5px;
-     margin:  20px;
-     padding: 20px 0px;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgba(58, 58, 58, 0.7) 5.22%, rgba(72, 72, 72, 0.4) 94.94%);
+    backdrop-filter: blur(12px);
+    border-radius: 5px;
+    margin:  20px;
+    padding: 20px 0px;
+    border: 1px solid  rgba(255, 255, 255, 0.2);
 
     .heading{
       display: flex;
@@ -205,7 +214,7 @@ const StyleDivElement = styled('div')`
       border: 1px solid #ADADAD;
       border-radius: 8px;
       margin: 10px 20px;
-      padding: 10px;
+      padding: 20px 10px;
     }
     .icon{
       display: flex;
