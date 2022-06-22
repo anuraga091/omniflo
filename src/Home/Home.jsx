@@ -38,9 +38,6 @@ height: 100%;
   -webkit-text-fill-color: transparent;
   background-clip: text; 
 
-  @media (max-width: 768px){
-    margin-top: 200px;
-  }
 }
 
 .anchor{
