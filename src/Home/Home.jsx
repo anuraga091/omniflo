@@ -12,6 +12,7 @@ const Home = () => {
 
 
 const StyleDiv = styled('div')`
+height: 100%;
   
   .header{
     padding: 10px 20px;
@@ -25,7 +26,7 @@ const StyleDiv = styled('div')`
 
 .body{
   text-align: center;
-  margin-top: 50%;
+  margin-top: 250px;
   padding: 10px 20px;
   font-style: normal;
   font-weight: 600;
@@ -36,6 +37,10 @@ const StyleDiv = styled('div')`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text; 
+
+  @media (max-width: 768px){
+    margin-top: 200px;
+  }
 }
 
 .anchor{
