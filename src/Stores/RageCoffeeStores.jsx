@@ -3,17 +3,10 @@ import { imageData } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import useGeoLocationAPI from '../Hooks/GeoLocationAPI';
 
-const RageCoffee = () => {
 
-  const Location = useGeoLocationAPI();
+const RageCoffeeStores = () => {
 
-  const ShowLocationPopUp = () => {
-    console.log(Location)
-    console.log(Location.error.code)
-    
-  }
 
   return (
     <div style={{backgroundColor: '#171717'}}>
@@ -31,8 +24,10 @@ const RageCoffee = () => {
             </h6>
             <hr/>
             <div className='card'>
-                <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-                <Button onClick={ShowLocationPopUp}><a href="/rageCoffeeStores"><img src="./images/map_pin.png" alt="icon"/> Find a Store Near Me</a></Button>
+                <p className='distance'>600 m Away</p>
+                <p className='name'>Jmd Supermart</p>
+                <p className='location'>Koramangala</p>
+                <Button><img src="./images/map_pin.png" alt="icon"/> Take me there </Button>
             </div>
 
             <div className="story">
@@ -142,13 +137,28 @@ const StyleDivElement = styled('div')`
     border-color: rgba(255, 255, 255, 0.2);
     
 
-    p{
-    text-align: center;
-    margin: 10px 0px 5px 0px;
-    i{
-      font-weight: 700;
-      color: #F38137;
+    .distance{
+        margin-top: 10px;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 24px;
+        background: linear-gradient(90deg, #B89FFF 0%, #FF9BC1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+       text-align: center;
     }
+    .name{
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;
+    }
+    .location{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        text-align: center;
+
     }
     button{
       background: linear-gradient(90deg, #3F0BDB 0%, #FF0C67 100%);
@@ -159,13 +169,6 @@ const StyleDivElement = styled('div')`
       text-transform: none;
       color: #fff;
       font-family: 'Poppins', sans-serif;
-      a{
-        font-weight: 600;
-        font-size: 16px;
-        color: #fff;
-        font-family: 'Poppins', sans-serif;
-        text-decoration: none;
-      }
 
       img{
         width: 24px;
@@ -296,4 +299,4 @@ const StyleDivElement = styled('div')`
   }
 `;
 
-export default RageCoffee;
+export default RageCoffeeStores;
