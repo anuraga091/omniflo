@@ -3,7 +3,7 @@ import { styled } from '@mui/material';
 const Home = () => {
   return (
     <StyleDiv style={{backgroundColor: '#171717' , height: '100%'}}>
-      <p className='header'>Spotlight</p>
+      <p className='header'><a href="/">Spotlight</a></p>
       <p className='body'>Your Favourite Brands Near You</p>
       <p className='anchor'><a href="/rageCoffee">Rage Coffee</a></p>
     </StyleDiv>
@@ -15,13 +15,18 @@ const StyleDiv = styled('div')`
 height: 100%;
   
   .header{
-    padding: 10px 20px;
+  padding: 10px 20px;
+  
+  line-height: 24px;
+  background-color: black;
+  width: auto;
+
+  a{
+    text-decoration: none;
+    color: #fff;
     font-weight: 600;
     font-size: 18px;
-    line-height: 24px;
-    background-color: black;
-    width: auto;
-    background-color: rgba(0, 0, 0, 1);
+  }
   }
 
 .body{

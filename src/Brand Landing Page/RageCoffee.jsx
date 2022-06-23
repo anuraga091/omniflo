@@ -7,15 +7,18 @@ import useGeoLocationAPI from '../Hooks/GeoLocationAPI';
 
 const RageCoffee = () => {
 
-  const Location = useGeoLocationAPI();
+  
 
-  const showLocationPopUp = () => {
+  const ShowLocationPopUp = () => {
+    useGeoLocationAPI()
     console.log(Location)
+    console.log(Location.error.code)
+    
   }
 
   return (
     <div style={{backgroundColor: '#171717'}}>
-        <StylePElement>Spotlight</StylePElement>
+        <StylePElement><a href="/">Spotlight</a></StylePElement>
         
         { imageData.map(data => (
           <StyleDivElement>
@@ -30,7 +33,7 @@ const RageCoffee = () => {
             <hr/>
             <div className='card'>
                 <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-                <Button onClick={showLocationPopUp}><img src="./images/map_pin.png" alt="icon"/> Find a Store Near Me</Button>
+                <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.png" alt="icon"/> Find a Store Near Me</Button>
             </div>
 
             <div className="story">
@@ -82,11 +85,17 @@ const RageCoffee = () => {
 
 const StylePElement = styled('p')`
   padding: 10px 20px;
-  font-weight: 600;
-  font-size: 18px;
+  
   line-height: 24px;
   background-color: black;
   width: auto;
+
+  a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+  }
 `;
 
 const StyleDivElement = styled('div')`
