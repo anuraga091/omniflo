@@ -138,7 +138,8 @@ const StyleDivElement = styled('div')`
     
 
     .distance{
-        margin-top: 10px;
+        margin: 0;
+        padding: 20px 0;
         font-weight: 600;
         font-size: 32px;
         line-height: 24px;
@@ -148,12 +149,14 @@ const StyleDivElement = styled('div')`
        text-align: center;
     }
     .name{
+        margin: 5px 0 0 0;
         font-weight: 700;
         font-size: 18px;
         line-height: 24px;
         text-align: center;
     }
     .location{
+        margin: 5px 0 0 0;
         font-weight: 400;
         font-size: 14px;
         line-height: 24px;
