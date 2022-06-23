@@ -1,6 +1,7 @@
 import React from 'react';
 import { imageData } from '../Data Constants/Data';
-import { styled, TextField } from '@mui/material';
+import styled from '@emotion/styled';
+import { TextField } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
@@ -15,7 +16,7 @@ const LocationDenyPage = () => {
         { imageData.map(data => (
           <StyleDivElement>
             <div className='img'>
-              <img src="./images/spotlight logo.jpg" alt="Spotlight Logo"/> <span> X </span><img src={data.url} alt={data.alt}/>
+              <img src="../images/spotlight logo.jpg" alt="Spotlight Logo"/> <span> X </span><img src="../images/rage coffee img.png" alt={data.alt}/>
             </div>
             <h6>
               <b>{data.name}</b>
@@ -25,12 +26,12 @@ const LocationDenyPage = () => {
             <hr/>
             <div className='card'>
                 <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-                <TextField id="outlined-basic" label="Outlined" variant="Enter your location"></TextField>
+                <StyleTextFiled id="outlined-basic" label="Enter Your Location" variant="outlined" size="small" />
             </div>
 
             <div className="story">
               <div className='heading'>
-                <img className='image1' src={data.url} alt={data.alt}/>
+                <img className='image1' src="../images/rage coffee img.png" alt={data.alt}/>
                 <div>
                   <h4>STORY OF</h4> 
                   <p>{data.name}</p>
@@ -38,14 +39,14 @@ const LocationDenyPage = () => {
               </div>
 
               <div className='body'>
-                <img className='image2' src={data.story_img} alt="Virat Kohli"/>
+                <img className='image2' src='../images/virat rc transparent.png' alt="Virat Kohli"/>
                 <p>{data.story}</p>
               </div>
               <div className="logos">
                   <div className="icon">
-                    <img className='logo' src="./images/icon-1.svg" alt=""/>
-                    <img className='logo' src="./images/icon-2.svg" alt=""/>
-                    <img  className='logo' src="./images/icon-3.svg" alt=""/>
+                    <img className='logo' src="../images/icon-1.svg" alt=""/>
+                    <img className='logo' src="../images/icon-2.svg" alt=""/>
+                    <img  className='logo' src="../images/icon-3.svg" alt=""/>
                   </div>
                   <div className="icon-text">
                     <p className='logo-text'>No Gut Health</p>
@@ -57,7 +58,7 @@ const LocationDenyPage = () => {
            
             <footer>
               <div className='footer'>
-                <img src="./images/spotlight logo.jpg" alt="spotlight logo"/>
+                <img src="../images/spotlight logo.jpg" alt="spotlight logo"/>
                 <p>Spotlight is The Coolest Retail Shelf that brings premium online brands near you!</p>
               </div>
               <div style={{display: 'flex', justifyContent: 'center'}} className="MUIIcon">
@@ -90,6 +91,18 @@ const StylePElement = styled('p')`
   }
 `;
 
+
+const StyleTextFiled = styled(TextField)`
+    border-radius: 5px;
+    margin: 10px 20px 20px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    
+`;
 const StyleDivElement = styled('div')`
   
   .img{
