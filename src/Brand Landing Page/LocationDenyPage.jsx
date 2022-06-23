@@ -1,64 +1,12 @@
-import React,{useState, useEffect} from 'react';
+import React from 'react';
 import { imageData } from '../Data Constants/Data';
-import { styled, Button } from '@mui/material';
+import { styled, TextField } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-// import useGeoLocationAPI from '../Hooks/GeoLocationAPI';
 
-const RageCoffee = () => {
 
-  // const LocationInitialValue = {
-  //   access: {
-  //     view: 'access',
-  //   },
-  //   deny: {
-  //     view: 'deny'
-  //   }
-  // }
+const LocationDenyPage = () => {
 
-  // const [page, setPage] = useState(LocationInitialValue.access)
-
-  const [Location, setLocation] = useState({
-        loaded: false,
-        coordinates: {lat : '', lng: ''}
-    });
-
-  useEffect(() => {
-        if(!("geolocation" in navigator)){
-            onError({
-                code: 0,
-                message: "Geolocation not supported or denied",
-            });
-        }  
-    },[Location])
-
-    const onSuccess = Location => {
-        setLocation({
-            loaded: true,
-            coordinates: {
-                lat: Location.coords.latitude,
-                lng: Location.coords.longitude
-            }
-        })
-
-        console.log(Location)
-        // setPage(LocationInitialValue.access)
-    }
-
-    const onError = error => {
-         setLocation({
-            loaded: true,
-            error,
-        })
-      console.log(error)
-      //setPage(LocationInitialValue.deny)
-    }
-
-  const ShowLocationPopUp = () => {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    
-    
-  }
 
   return (
     <div style={{backgroundColor: '#171717'}}>
@@ -77,13 +25,7 @@ const RageCoffee = () => {
             <hr/>
             <div className='card'>
                 <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-                <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.png" alt="icon"/> 
-                {/* {page.view === 'access' ?  */}
-                <a href="/rageCoffee/stores">Find a Store Near Me</a>
-                {/* :
-                <a href="/rageCoffee/locationdenypage">Find a Store Near Me</a>
-                } */}
-                </Button>
+                <TextField id="outlined-basic" label="Outlined" variant="Enter your location"></TextField>
             </div>
 
             <div className="story">
@@ -210,13 +152,6 @@ const StyleDivElement = styled('div')`
       text-transform: none;
       color: #fff;
       font-family: 'Poppins', sans-serif;
-      a{
-        font-weight: 600;
-        font-size: 16px;
-        color: #fff;
-        font-family: 'Poppins', sans-serif;
-        text-decoration: none;
-      }
 
       img{
         width: 24px;
@@ -347,4 +282,4 @@ const StyleDivElement = styled('div')`
   }
 `;
 
-export default RageCoffee;
+export default LocationDenyPage;

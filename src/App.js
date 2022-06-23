@@ -3,6 +3,7 @@ import Home from './Home/Home';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import RageCoffee from './Brand Landing Page/RageCoffee';
 import RageCoffeeStores from './Stores/RageCoffeeStores';
+import LocationDenyPage from './Brand Landing Page/LocationDenyPage';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/rageCoffee" element={<RageCoffee/>}></Route>
-          <Route path="/rageCoffeeStores" element={<RageCoffeeStores/>}></Route>
+          <Route path="/rageCoffee/stores" element={<RageCoffeeStores/>}></Route>
+          <Route path="/rageCoffee/locationdenypage" element={<LocationDenyPage/>}></Route>
           {/* <Route path="/home" element={<><Header /><Home/></>}></Route> */}
           
         </Routes>
