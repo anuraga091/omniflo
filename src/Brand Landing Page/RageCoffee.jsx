@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import {useNavigate} from "react-router-dom";
 import { imageData } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -7,17 +8,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 
 const RageCoffee = () => {
 
-  // const LocationInitialValue = {
-  //   access: {
-  //     view: 'access',
-  //   },
-  //   deny: {
-  //     view: 'deny'
-  //   }
-  // }
-
-  // const [page, setPage] = useState(LocationInitialValue.access)
-
+  const navigate = useNavigate()
   const [Location, setLocation] = useState({
         loaded: false,
         coordinates: {lat : '', lng: ''}
@@ -42,7 +33,8 @@ const RageCoffee = () => {
         })
 
         console.log(Location)
-        // setPage(LocationInitialValue.access)
+        navigate("/rageCoffee/stores")
+        
     }
 
     const onError = error => {
@@ -51,7 +43,7 @@ const RageCoffee = () => {
             error,
         })
       console.log(error)
-      //setPage(LocationInitialValue.deny)
+     
     }
 
   const ShowLocationPopUp = () => {
@@ -77,13 +69,7 @@ const RageCoffee = () => {
             <hr/>
             <div className='card'>
                 <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-                <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.png" alt="icon"/> 
-                {/* {page.view === 'access' ?  */}
-                <a href="/rageCoffee/stores">Find a Store Near Me</a>
-                {/* :
-                <a href="/rageCoffee/locationdenypage">Find a Store Near Me</a>
-                } */}
-                </Button>
+                <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.svg" alt="icon"/>  Find a Store Near Me </Button>
             </div>
 
             <div className="story">
@@ -210,13 +196,14 @@ const StyleDivElement = styled('div')`
       text-transform: none;
       color: #fff;
       font-family: 'Poppins', sans-serif;
-      a{
+      
         font-weight: 600;
         font-size: 16px;
         color: #fff;
         font-family: 'Poppins', sans-serif;
         text-decoration: none;
-      }
+        padding: 10px 0;
+      
 
       img{
         width: 24px;

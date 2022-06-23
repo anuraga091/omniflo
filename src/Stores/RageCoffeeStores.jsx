@@ -24,10 +24,10 @@ const RageCoffeeStores = () => {
             </h6>
             <hr/>
             <div className='card'>
-                <p className='distance'>600 m Away</p>
+                <p className='distance'>600m Away</p>
                 <p className='name'>Jmd Supermart</p>
                 <p className='location'>Koramangala</p>
-                <Button><img src="../images/map_pin.png" alt="icon"/> Take me there </Button>
+                <Button><img src="../images/location.svg" alt="icon"/> Take me there </Button>
             </div>
 
             <div className="story">
@@ -154,6 +154,7 @@ const StyleDivElement = styled('div')`
         font-size: 18px;
         line-height: 24px;
         text-align: center;
+        text-transform: uppercase;
     }
     .location{
         margin: 5px 0 0 0;
@@ -172,6 +173,8 @@ const StyleDivElement = styled('div')`
       text-transform: none;
       color: #fff;
       font-family: 'Poppins', sans-serif;
+      padding: 10px 0;
+      text-transform: uppercase;
 
       img{
         width: 24px;
