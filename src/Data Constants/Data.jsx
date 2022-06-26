@@ -1,3 +1,7 @@
+ export const distance = [
+    Math.floor(Math.random()*1000)
+ ];
+ 
  export const imageData = [
     {
         url: './images/rage coffee img.png',

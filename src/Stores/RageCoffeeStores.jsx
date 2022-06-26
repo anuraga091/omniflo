@@ -1,5 +1,5 @@
 import React from 'react';
-import { imageData } from '../Data Constants/Data';
+import { imageData,distance } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -24,7 +24,7 @@ const RageCoffeeStores = () => {
             </h6>
             <hr/>
             <div className='card'>
-                <p className='distance'>600m Away</p>
+                <p className='distance'>{distance}m Away</p>
                 <p className='name'>Jmd Supermart</p>
                 <p className='location'>Koramangala</p>
                 <Button><img src="../images/location.svg" alt="icon"/> Take me there </Button>
