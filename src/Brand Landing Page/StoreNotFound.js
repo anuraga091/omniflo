@@ -24,10 +24,11 @@ const StoreNotFound = () => {
               <span> is now on </span>
               <b> Spotlight </b>
             </h6>
-            <hr/>
+            <hr className='hr1'/>
             <div className='card'>
                 <p className='store'>THE NEAREST STORE IS</p>
                 <p className='distance'>{distance}km Away</p>
+                <hr className='hr2'/>
                 <p className='text1'>How Far Will You Go for Love? </p>
                 <p className='text2'>Instead, let us Notify you when we launch near you. </p>
                 <StyleTextFiled id="outlined-basic" label="Full name" variant="outlined" size="small" />
@@ -134,7 +135,7 @@ const StyleDivElement = styled('div')`
     margin: 10px;
   }
 
-  hr{
+  .hr1{
     width: 218px;
     height: 0px;
     margin: 2px 0 0 20%;
@@ -159,6 +160,7 @@ const StyleDivElement = styled('div')`
     text-align: center;
     
     }
+    
     .distance{
         font-weight: 600;
         font-size: 32px;
@@ -169,17 +171,20 @@ const StyleDivElement = styled('div')`
         -webkit-text-fill-color: transparent;
         background-clip: text;
         padding: 10px;
+        margin-bottom: 0;
     }
     .text1{
         font-weight: 600;
         font-size: 18px;
         line-height: 24px;
+        margin-bottom: 0;
     }
     .text2{
         font-weight: 400;
         font-size: 13px;
         line-height: 20px;
         padding: 0 40px;
+        margin-top: 5px;
     }
     .store{
         font-weight: 400;
@@ -187,6 +192,15 @@ const StyleDivElement = styled('div')`
         line-height: 16px;
         margin: 0;
     }
+    .hr2{
+    width: 218px;
+    height: 0px;
+    margin: 10px auto;
+    background: rgba(217, 217, 217, 0.6);
+    opacity: 0.2;
+    border: 1px solid #ADADAD;
+
+  }
     button{
       background: linear-gradient(90deg, #3F0BDB 0%, #FF0C67 100%);
       border-radius: 5px;
