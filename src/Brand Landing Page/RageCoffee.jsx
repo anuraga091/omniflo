@@ -21,7 +21,7 @@ const RageCoffee = () => {
                 
             });
         }  
-    },[Location])
+    },[Location])// eslint-disable-line react-hooks/exhaustive-deps
 
     const onSuccess = Location => {
         setLocation({
@@ -45,7 +45,7 @@ const RageCoffee = () => {
         
     }
 
-    const onError = error => {
+    const onError = (error) => {
          setLocation({
             loaded: true,
             error,
