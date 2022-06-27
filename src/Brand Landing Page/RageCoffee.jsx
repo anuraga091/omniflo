@@ -18,6 +18,7 @@ const RageCoffee = () => {
             onError({
                 code: 0,
                 message: "Geolocation not supported or denied",
+                
             });
         }  
     },[Location])
@@ -50,7 +51,8 @@ const RageCoffee = () => {
             error,
         })
       console.log(error)
-     
+      navigate("/rageCoffee/locationdenypage")
+      
     }
 
   const ShowLocationPopUp = () => {
