@@ -180,14 +180,11 @@ const StyleDivElement = styled('div')`
   .card{
     margin:  20px;
     padding: 20px 0;
-    box-sizing: border-box;
-    background: linear-gradient(180deg, rgba(58, 58, 58, 0.7) 5.22%, rgba(72, 72, 72, 0.4) 94.94%);
-    backdrop-filter: blur(12px);
-    border-radius: 5px;
-    border-width: 1px;
-    border-color: rgba(255, 255, 255, 0.2);
-    
-
+    position: relative;
+    background:  #222;
+    --border-width: 3px;
+    border-radius: var(--border-width);
+    z-index: 0;
     p{
     text-align: center;
     margin: 10px 0px 5px 0px;
@@ -197,6 +194,7 @@ const StyleDivElement = styled('div')`
     }
     }
     button{
+      
       background: linear-gradient(90deg, #3F0BDB 0%, #FF0C67 100%);
       border-radius: 5px;
       margin: 10px 20px 20px 20px;
@@ -204,14 +202,9 @@ const StyleDivElement = styled('div')`
       font-size: 16px;
       text-transform: none;
       color: #fff;
-      font-family: 'Poppins', sans-serif;
-      
-        font-weight: 600;
-        font-size: 16px;
-        color: #fff;
-        font-family: 'Poppins', sans-serif;
-        text-decoration: none;
-        padding: 10px 0;
+      font-family: 'Poppins', sans-serif; 
+      text-decoration: none;
+      padding: 10px 0;
       
 
       img{
@@ -220,7 +213,33 @@ const StyleDivElement = styled('div')`
         margin-right: 5px;
       }
     }
+
+    ::after{
+      position: absolute;
+      z-index: -1;
+      content: "";
+      top: calc(-1 * var(--border-width));
+      left: calc(-1 * var(--border-width));
+      width: calc(100% + var(--border-width) * 2);
+      height: calc(100% + var(--border-width) * 2);
+      background: linear-gradient(
+      60deg,
+      rgba(0, 50, 217, 0.1),
+      rgba(217, 217, 27, 0.5),
+      rgba(27, 217, 217, 1)
+    );
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: calc(2 * var(--border-width));
+    animation: moveGradient 6s infinite;
+  
+    }
   }
+  @keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
 
   .story{
     box-sizing: border-box;
