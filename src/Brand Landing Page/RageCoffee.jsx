@@ -76,9 +76,11 @@ const RageCoffee = () => {
               <b> Spotlight </b>
             </h6>
             <hr/>
-            <div className='card'>
-                <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-                <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.svg" alt="icon"/>  Find a Store Near Me </Button>
+            <div className='border'>
+              <div className='card'>
+                  <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
+                  <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.svg" alt="icon"/>  Find a Store Near Me </Button>
+              </div>
             </div>
 
             <div className="story">
@@ -176,45 +178,16 @@ const StyleDivElement = styled('div')`
     border: 1px solid #ADADAD;
   }
   
-
-  .card{
-    margin:  20px;
-    padding: 20px 0;
+.border{
     position: relative;
-    background:  #222;
-    --border-width: 3px;
-    border-radius: var(--border-width);
+    margin:  20px;
+    padding: 1px;
     z-index: 0;
-    p{
-    text-align: center;
-    margin: 10px 0px 5px 0px;
-    i{
-      font-weight: 700;
-      color: #F38137;
-    }
-    }
-    button{
-      
-      background: linear-gradient(90deg, #3F0BDB 0%, #FF0C67 100%);
-      border-radius: 5px;
-      margin: 10px 20px 20px 20px;
-      font-weight: 600;
-      font-size: 16px;
-      text-transform: none;
-      color: #fff;
-      font-family: 'Poppins', sans-serif; 
-      text-decoration: none;
-      padding: 10px 0;
-      
+    border-style: none;
+    --border-width: 1px;
+    border-radius: 10px;
 
-      img{
-        width: 24px;
-        height: 24px;
-        margin-right: 5px;
-      }
-    }
-
-    ::after{
+  ::after{
       position: absolute;
       z-index: -1;
       content: "";
@@ -224,18 +197,69 @@ const StyleDivElement = styled('div')`
       height: calc(100% + var(--border-width) * 2);
       background: linear-gradient(
       60deg,
-      rgba(0, 50, 217, 0.1),
-      rgba(217, 217, 27, 0.5),
-      rgba(27, 217, 217, 1)
+      black,
+      red,
+      blue,
+      orange,
+      green
     );
     background-size: 300% 300%;
     background-position: 0 50%;
     border-radius: calc(2 * var(--border-width));
-    animation: moveGradient 6s infinite;
+    animation: moveGradient 8s infinite;
   
+  }
+
+  .card{
+    z-index: 10;
+    background: #171717;
+    border-radius: 1px;
+    p{
+      text-align: center;
+      margin: 10px 0px 5px 0px;
+      i{
+        font-weight: 700;
+        color: #F38137;
+      }
+    }
+
+    button{ 
+      background: linear-gradient(-45deg, #FFA63D, #3F0BDB, #FF0C67,#338AFF);
+      background-size: 600%;
+      border-radius: 20px;
+      margin: 10px 20px 20px 20px;
+      font-weight: 600;
+      font-size: 16px;
+      text-transform: none;
+      color: #fff;
+      font-family: 'Poppins', sans-serif; 
+      text-decoration: none;
+      padding: 10px 0;
+      position: relative;
+      animation: anime 16s linear infinite;
+      img{
+        width: 24px;
+        height: 24px;
+        margin-right: 5px;
+      }
     }
   }
-  @keyframes moveGradient {
+}
+
+@keyframes anime {
+   0%{
+     background-position: 0% 50%
+     }
+   50%{
+     background-position: 100% 50%
+     }
+   100%{
+     background-position: 0% 50%
+     }
+}
+ 
+
+@keyframes moveGradient {
   50% {
     background-position: 100% 50%;
   }
