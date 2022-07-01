@@ -165,16 +165,20 @@ const StyleDivElement = styled('div')`
 
     }
     button{
-      background: linear-gradient(90deg, #3F0BDB 0%, #FF0C67 100%);
-      border-radius: 5px;
+      background: linear-gradient(-45deg, #FFA63D, #3F0BDB, #FF0C67,#338AFF);
+      background-size: 600%;
+      border-radius: 20px;
       margin: 10px 20px 20px 20px;
       font-weight: 600;
       font-size: 16px;
       text-transform: none;
       color: #fff;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', sans-serif; 
+      text-decoration: none;
       padding: 10px 0;
+      position: relative;
       text-transform: uppercase;
+      animation: anime 16s linear infinite;
 
       img{
         width: 24px;
@@ -183,6 +187,18 @@ const StyleDivElement = styled('div')`
       }
     }
   }
+
+  @keyframes anime {
+   0%{
+     background-position: 0% 50%
+     }
+   50%{
+     background-position: 100% 50%
+     }
+   100%{
+     background-position: 0% 50%
+     }
+}
 
   .story{
     box-sizing: border-box;

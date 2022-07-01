@@ -76,12 +76,12 @@ const RageCoffee = () => {
               <b> Spotlight </b>
             </h6>
             <hr/>
-            <div className='border'>
-              <div className='card'>
-                  <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-                  <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.svg" alt="icon"/>  Find a Store Near Me </Button>
-              </div>
+        
+            <div className='card'>
+                <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
+                <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.svg" alt="icon"/>  Find a Store Near Me </Button>
             </div>
+        
 
             <div className="story">
               <div className='heading'>
@@ -177,43 +177,16 @@ const StyleDivElement = styled('div')`
     opacity: 0.2;
     border: 1px solid #ADADAD;
   }
-  
-.border{
-    position: relative;
-    margin:  20px;
-    padding: 1px;
-    z-index: 0;
-    border-style: none;
-    --border-width: 1px;
-    border-radius: 10px;
-
-  ::after{
-      position: absolute;
-      z-index: -1;
-      content: "";
-      top: calc(-1 * var(--border-width));
-      left: calc(-1 * var(--border-width));
-      width: calc(100% + var(--border-width) * 2);
-      height: calc(100% + var(--border-width) * 2);
-      background: linear-gradient(
-      60deg,
-      black,
-      red,
-      blue,
-      orange,
-      green
-    );
-    background-size: 300% 300%;
-    background-position: 0 50%;
-    border-radius: calc(2 * var(--border-width));
-    animation: moveGradient 8s infinite;
-  
-  }
 
   .card{
-    z-index: 10;
-    background: #171717;
-    border-radius: 1px;
+    margin:  20px;
+    padding: 20px 0;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgba(58, 58, 58, 0.7) 5.22%, rgba(72, 72, 72, 0.4) 94.94%);
+    backdrop-filter: blur(12px);
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.2);
     p{
       text-align: center;
       margin: 10px 0px 5px 0px;
@@ -244,7 +217,7 @@ const StyleDivElement = styled('div')`
       }
     }
   }
-}
+
 
 @keyframes anime {
    0%{
@@ -259,11 +232,7 @@ const StyleDivElement = styled('div')`
 }
  
 
-@keyframes moveGradient {
-  50% {
-    background-position: 100% 50%;
-  }
-}
+
 
   .story{
     box-sizing: border-box;
