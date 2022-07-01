@@ -66,7 +66,7 @@ const StyleDiv = styled('div')`
 .x1 {
     -webkit-animation: loading-dot 3.5s ease-in-out infinite;
     animation: loading-dot 3.5s ease-in-out infinite;
-	top: 30vh;
+	top: 40vh;
     left: 40%;
 	
 
