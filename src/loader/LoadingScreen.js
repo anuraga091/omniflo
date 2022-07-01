@@ -32,65 +32,44 @@ const StyleDiv = styled('div')`
 #background-wrap {
     bottom: 0;
 	left: 0;
-	position: fixed;
+	position: relative;
 	right: 0;
 	top: 0;
 	z-index: -1;
 }
 
 
-@-webkit-keyframes loading-block {
-  71.4285714286%, 100% {
-    transform: translate3d(-50%, -50%, 0) rotate(360deg);
-  }
-}
 
-@keyframes loading-block {
-  71.4285714286%, 100% {
-    transform: translate3d(-50%, -50%, 0) rotate(360deg);
-  }
-}
 @-webkit-keyframes loading-dot {
-  0%, 71.4285714286%, 100% {
-    transform: scale(0.17);
+   0%{
+    transform: rotate(0deg);
+    
   }
-  35.7142857143% {
-    transform: scale(1);
+  
+  100%{
+    transform:  rotate(360deg);
+    
   }
 }
 @keyframes loading-dot {
-  0%, 71.4285714286%, 100% {
-    transform: scale(0.17);
+   0%{
+    transform: rotate(0deg);
+    
   }
-  35.7142857143% {
-    transform: scale(1);
-  }
-}
-@-webkit-keyframes gradient {
-  50% {
-    background-position: 100% 0%;
-  }
-}
-@keyframes gradient {
-  50% {
-    background-position: 100% 0%;
+  
+  100%{
+    transform:  rotate(360deg);
+    
   }
 }
 
 .x1 {
-    -webkit-animation: loading-block 3.5s ease-in-out infinite;
-    animation: loading-block 3.5s ease-in-out infinite;
-	::after{
-        -webkit-animation: loading-dot 3.5s ease-in-out infinite;
-          animation: loading-dot 3.5s ease-in-out infinite;
-    }
+    -webkit-animation: loading-dot 3.5s ease-in-out infinite;
+    animation: loading-dot 3.5s ease-in-out infinite;
+	top: 30vh;
+    left: 40%;
 	
-	left: 40%;
-	top: 40vh;
-	
-	-webkit-transform: scale(0.1);
-	-moz-transform: scale(0.1);
-	transform: scale(0.1);
+
 }
 
 /* .x2 {
@@ -145,9 +124,9 @@ const StyleDiv = styled('div')`
 	-moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), inset 0px 10px 30px 5px rgba(255, 255, 255, 1);
 	box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), inset 0px 10px 30px 5px rgba(255, 255, 255, 1);
 	
-    height: 200px;
+    height: 100px;
 	position: absolute;
-	width: 200px;
+	width: 100px;
 }
 
 .bubble:after {
@@ -169,7 +148,7 @@ const StyleDiv = styled('div')`
 	
 	content: "";
     height: 18px;
-	left: 10px;
+	left: -10px;
 	position: absolute;
 	width: 18px;
 }
