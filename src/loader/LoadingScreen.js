@@ -20,7 +20,7 @@ const StyleDiv = styled('div')`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: linear-gradient(45deg, #6fc7b5 0%, #13bdce 20%, #0094d9 40%, #5a3694 60%, #ee4d74 80%, #f58c58 100%);
+  background: linear-gradient(45deg, #5a3694  0%,#ee4d74  20%, #0094d9 40%, #6fc7b5 60%, #13bdce 80%, #f58c58 100%);
   background-size: 600%;
   background-position: 0% 100%;
   -webkit-animation: gradient 7s ease-in-out infinite;
