@@ -1,79 +1,100 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { imageData,distance } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import { RingLoader } from 'react-spinners';
 
 
 const RageCoffeeStores = () => {
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    },6000)
+  }, [])
 
   return (
-    <div style={{backgroundColor: '#171717'}}>
-        <StylePElement><a href="/">Spotlight</a></StylePElement>
-        
-        { imageData.map(data => (
-          <StyleDivElement>
-            <div className='img'>
-              <img src="../images/spotlight logo.jpg" alt="Spotlight Logo"/> <span> X </span><img src="../images/rage coffee img.png" alt={data.alt}/>
-            </div>
-            <h6>
-              <b>{data.name}</b>
-              <span> is now on </span>
-              <b> Spotlight </b>
-            </h6>
-            <hr/>
-            <div className='card'>
-                <p className='distance'>{distance}m Away</p>
-                <p className='name'>Jmd Supermart</p>
-                <p className='location'>Koramangala</p>
-                <Button><img src="../images/location.svg" alt="icon"/> Take me there </Button>
-            </div>
+    <>
 
-            <div className="story">
-              <div className='heading'>
-                <img className='image1' src="../images/rage coffee img.png" alt={data.alt}/>
-                <div>
-                  <h4>STORY OF</h4> 
-                  <p>{data.name}</p>
+    {
+      loading ?  
+        <RingLoader 
+        loading ={loading}
+        color= {'#FF0C67'}
+        size ={100}
+        cssOverride={{marginTop:'40vh', marginLeft: '40%'}}
+        />
+      : 
+      <div style={{backgroundColor: '#171717'}}>
+          <StylePElement><a href="/">Spotlight</a></StylePElement>
+          
+          { imageData.map(data => (
+            <StyleDivElement>
+              <div className='img'>
+                <img src="../images/spotlight logo.jpg" alt="Spotlight Logo"/> <span> X </span><img src="../images/rage coffee img.png" alt={data.alt}/>
+              </div>
+              <h6>
+                <b>{data.name}</b>
+                <span> is now on </span>
+                <b> Spotlight </b>
+              </h6>
+              <hr/>
+              <div className='card'>
+                  <p className='distance'>{distance}m Away</p>
+                  <p className='name'>Jmd Supermart</p>
+                  <p className='location'>Koramangala</p>
+                  <Button><img src="../images/location.svg" alt="icon"/> Take me there </Button>
+              </div>
+
+              <div className="story">
+                <div className='heading'>
+                  <img className='image1' src="../images/rage coffee img.png" alt={data.alt}/>
+                  <div>
+                    <h4>STORY OF</h4> 
+                    <p>{data.name}</p>
+                  </div>
+                </div>
+
+                <div className='body'>
+                  <img className='image2' src='../images/virat rc transparent.png' alt="Virat Kohli"/>
+                  <p>{data.story}</p>
+                </div>
+                <div className="logos">
+                    <div className="icon">
+                      <img className='logo' src="../images/icon-1.svg" alt=""/>
+                      <img className='logo' src="../images/icon-2.svg" alt=""/>
+                      <img  className='logo' src="../images/icon-3.svg" alt=""/>
+                    </div>
+                    <div className="icon-text">
+                      <p className='logo-text'>No Gut Health</p>
+                      <p className='logo-text'>No Bitterness</p>
+                      <p className='logo-text'>Rich Aroma</p>
+                    </div> 
                 </div>
               </div>
-
-              <div className='body'>
-                <img className='image2' src='../images/virat rc transparent.png' alt="Virat Kohli"/>
-                <p>{data.story}</p>
-              </div>
-              <div className="logos">
-                  <div className="icon">
-                    <img className='logo' src="../images/icon-1.svg" alt=""/>
-                    <img className='logo' src="../images/icon-2.svg" alt=""/>
-                    <img  className='logo' src="../images/icon-3.svg" alt=""/>
-                  </div>
-                  <div className="icon-text">
-                    <p className='logo-text'>No Gut Health</p>
-                    <p className='logo-text'>No Bitterness</p>
-                    <p className='logo-text'>Rich Aroma</p>
-                  </div> 
-              </div>
-            </div>
-           
-            <footer>
-              <div className='footer'>
-                <img src="../images/spotlight logo.jpg" alt="spotlight logo"/>
-                <p>Spotlight is The Coolest Retail Shelf that brings premium online brands near you!</p>
-              </div>
-              <div style={{display: 'flex', justifyContent: 'center'}} className="MUIIcon">
-                <InstagramIcon />
-                <TwitterIcon/>
-              </div>
               
-              <hr/>
-              <p> &copy; 2022 Spotlight</p>
-            </footer>
-            
-          </StyleDivElement>
-        ))}
-    </div>
+              <footer>
+                <div className='footer'>
+                  <img src="../images/spotlight logo.jpg" alt="spotlight logo"/>
+                  <p>Spotlight is The Coolest Retail Shelf that brings premium online brands near you!</p>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center'}} className="MUIIcon">
+                  <InstagramIcon />
+                  <TwitterIcon/>
+                </div>
+                
+                <hr/>
+                <p> &copy; 2022 Spotlight</p>
+              </footer>
+              
+            </StyleDivElement>
+          ))}
+      </div>
+      }
+    </>
   )
 };
 
