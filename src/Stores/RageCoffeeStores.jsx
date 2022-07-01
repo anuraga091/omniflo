@@ -3,7 +3,7 @@ import { imageData,distance } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { RingLoader } from 'react-spinners';
+import LoadingScreen from '../loader/LoadingScreen';
 
 
 const RageCoffeeStores = () => {
@@ -21,12 +21,7 @@ const RageCoffeeStores = () => {
 
     {
       loading ?  
-        <RingLoader 
-        loading ={loading}
-        color= {'#FF0C67'}
-        size ={100}
-        cssOverride={{marginTop:'40vh', marginLeft: '40%'}}
-        />
+        <LoadingScreen/>
       : 
       <div style={{backgroundColor: '#171717'}}>
           <StylePElement><a href="/">Spotlight</a></StylePElement>
