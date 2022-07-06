@@ -1,0 +1,28 @@
+{
+    "brands" : {
+        "brand name" : "String",
+        "brand logo" : "url",
+        "brand description" : "string",
+        "brand description logo" : "url",
+        "usp" : {
+            "usp1" : ["string", "url"],
+            "usp2" : ["string", "url"],
+            "usp3" : ["string", "url"]
+        }
+    } 
+},
+
+
+{
+    "brands" : {
+        "brand name" : "Rage Coffee",
+        "brand logo" : "../rageCoffeeLogo",
+        "brand description" : "Started in 2018, Rage Coffee is the world’s first plant-based vitamins coffee brand. Bringing the craft coffee experience to the instant and health conscious generation, our coffee is handpicked from best plantations in Ethiopia and India.",
+        "brand description img" : "/virat kohli with rage coffee.png",
+        "usp" : {
+            "usp1" : ["No Gut Health", "/noGutHealth-logo"],
+            "usp2" : ["No Bitterness", "/No Bitterness Logo"],
+            "usp3" : ["Rich Aroma", "/Rich Aroma logo"]
+        }
+    } 
+}

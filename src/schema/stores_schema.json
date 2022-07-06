@@ -1,0 +1,22 @@
+{
+    "brands" : {
+        "brand name" : "String",
+        "stores" : {
+            "store1" : ["store-name","location", "map-url", "latitude" , "longitude"],
+            "store2" : ["store-name","location", "map-url", "latitude" , "longitude"],
+            "store3" : ["store-name","location", "map-url", "latitude" , "longitude"]
+        }
+    } 
+},
+
+
+{
+    "brands" : {
+        "brand name" : "Rage Coffee",
+        "stores" : {
+            "store1" : ["JMD Supermart","Koramangala", "map-url", 79.3366773 , 15.68748989],
+            "store2" : ["store-name","location", "map-url", "latitude" , "longitude"],
+            "store3" : ["store-name","location", "map-url", "latitude" , "longitude"]
+        }
+    } 
+}
