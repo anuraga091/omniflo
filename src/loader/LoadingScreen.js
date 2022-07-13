@@ -1,7 +1,7 @@
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import { styled } from '@mui/material';
 
 
@@ -9,21 +9,29 @@ import { styled } from '@mui/material';
 const LoadingScreen = () => {
 
   const [icon, setIcon] = useState(<RadioButtonUncheckedIcon/>);
+  const [text, setText] = useState(['Connecting to server','Grabbing objects','Redndering page','Resolving IP'])
 
-  
+  const doLoad = () => {
+      setTimeout(() => {
+        setIcon(<CheckCircleIcon/>)
+        },500)
+  }
 
-  useEffect(() => {
-    setIcon(<RadioButtonUncheckedIcon/>)
-    setTimeout(() => {
-      setIcon(<CheckCircleIcon/>)
-    },500)
-  }, [])
+  // useEffect(() => {
+  //   setIcon(<RadioButtonUncheckedIcon/>)
+  //   
+  // }, [])
 
   
 
   return (
-    <StyleDiv>
-      <p id='one'>{icon} Connecting to server</p>
+    <StyleDiv className='scroller'>
+      <span onLoad={doLoad()}>
+        {icon} {text[0]}
+        <br/> {icon} {text[1]}
+        <br/> {icon} {text[2]}
+        <br/> {icon} {text[3]}
+      </span>
       {/* <p className='two'>{icon} Grabbing objects</p>
       <p className='three'>{icon} Redndering page</p>
       <p className='four'>{icon} Resolving IP</p>
@@ -42,30 +50,43 @@ const LoadingScreen = () => {
 }
 
 const StyleDiv = styled('div')`
-  text-align: center;
-  margin-top: 50vh;
+  margin-top: 40vh;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20%;
+  line-height: 30px;
 
 
-@keyframes anim-lineUp {
-  0% {
-    opacity: 1;
-    transform: translateY(80%);
+  span{
+    text-align: center;
+    position: absolute;
+    top: 0;
+    animation: slide 4s infinite;
   }
-  20% {
-    opacity: 1;
+
+
+
+@keyframes slide {
+  0% {
+    top: 5rem;
+  }
+  25% {
+    top: 2.5em;
   }
   50% {
-    opacity: 0.6;
-    transform: translateY(0%);
+    top: 0em;
   }
-  100% {
-    opacity: 0;
-    transform: translateY(0%);
+  75% {
+    top: -2.5em;
+  }
+  100%{
+    top: -5em;
   }
 }
-  #one{
-    animation: 1s anim-lineUp ease-out infinite;
-  }
+  
   
   
 
