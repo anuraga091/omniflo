@@ -56,7 +56,7 @@ const StyleDiv = styled('div')`
   overflow: hidden;
   justify-content: center;
   align-items: center;
-  margin-left: 20%;
+  margin-left: 30%;
   line-height: 30px;
 
 
