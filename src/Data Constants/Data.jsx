@@ -4,10 +4,10 @@
  
  export const imageData = [
     {
-        url: './images/rage coffee img.png',
+        url: '/images/rage_coffee_img.png',
         alt: 'Rage Coffee',
         name: 'Rage Coffee',
-        story_img: './images/virat rc transparent.png',
+        story_img: '/images/virat rc transparent.png',
         story: 'Started in 2018, Rage Coffee is the world’s first plant-based vitamins coffee brand. Bringing the craft coffee experience to the instant and health conscious generation, our coffee is handpicked from best plantations in Ethiopia  and India.'
     }
     // {

@@ -1,10 +1,10 @@
 import './App.css';
 import Home from './Home/Home';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import RageCoffee from './Brand Landing Page/RageCoffee';
-import RageCoffeeStores from './Stores/RageCoffeeStores';
-import LocationDenyPage from './Brand Landing Page/LocationDenyPage';
-import StoreNotFound from './Brand Landing Page/StoreNotFound';
+import RageCoffee from './Brands/RageCoffee';
+import RageCoffeeStores from './conditions/iflocationallow/brandsStore/RageCoffeeStores';
+import LocationDenyPage from './conditions/iflocationdeny/LocationDenyPage';
+import StoreNotFound from './conditions/iflocationallow/brandsStoreNotFound/StoreNotFound';
 import LoadingScreen from './loader/LoadingScreen';
 
 function App() {

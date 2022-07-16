@@ -19,19 +19,23 @@ const LoadingScreen = () => {
 
   // useEffect(() => {
   //   setIcon(<RadioButtonUncheckedIcon/>)
-  //   
-  // }, [])
+    
+  // }, [setIcon])
 
   
 
   return (
-    <StyleDiv className='scroller'>
-      <span onLoad={doLoad()}>
-        {icon} {text[0]}
-        <br/> {icon} {text[1]}
-        <br/> {icon} {text[2]}
-        <br/> {icon} {text[3]}
-      </span>
+    <StyleDiv >
+      <div className='card'>
+        <div className='scroller'>
+          <span onLoad={doLoad()}>
+            {icon} {text[0]}
+            <br/> {icon} {text[1]}
+            <br/> {icon} {text[2]}
+            <br/> {icon} {text[3]}
+          </span>
+        </div>
+      </div>
       {/* <p className='two'>{icon} Grabbing objects</p>
       <p className='three'>{icon} Redndering page</p>
       <p className='four'>{icon} Resolving IP</p>
@@ -50,21 +54,39 @@ const LoadingScreen = () => {
 }
 
 const StyleDiv = styled('div')`
-  margin-top: 40vh;
-  height: 100px;
-  position: relative;
-  overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  margin-left: 25%;
-  line-height: 30px;
+  
+ 
 
-
+.card{
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 30px;
+    margin:  20px;
+    padding: 20px 0;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgba(58, 58, 58, 0.7) 5.22%, rgba(72, 72, 72, 0.4) 94.94%);
+    backdrop-filter: blur(12px);
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.2);
+}
   span{
     text-align: center;
-    position: absolute;
-    top: 0;
+    align-items: center;
+    position: relative;
+    line-height: 30px;
+    margin-bottom: 5px;
     animation: slide 4s infinite;
+    
+  }
+  svg{
+    text-align: center;
+    align-items: center;
+    margin-bottom: 5px;
   }
 
 
