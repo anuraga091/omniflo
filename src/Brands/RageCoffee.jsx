@@ -32,12 +32,17 @@ const StyleDivElement = styled('div')`
   hr{
     width: 218px;
     height: 0px;
-    margin: 2px 0 0 20%;
+    margin: 2px 0 0 25%;
+
+    @media (max-width: 400px){
+      margin: 2px 0 0 20%;
+    }
     background: rgba(217, 217, 217, 0.6);
     opacity: 0.2;
     border: 1px solid #ADADAD;
     margin-bottom: 20px;
     margin-top: 5px;
+    text-align: center;
   }  
 `;
 

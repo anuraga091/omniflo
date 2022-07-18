@@ -2,17 +2,20 @@ import React from 'react'
 import { styled } from '@mui/material';
 const Home = () => {
   return (
+    
     <StyleDiv style={{backgroundColor: '#171717' , height: '100%'}}>
       <p className='header'><a href="/">Spotlight</a></p>
       <p className='body'>Your Favourite Brands Near You</p>
       <p className='anchor'><a href="/rageCoffee">Rage Coffee</a></p>
     </StyleDiv>
+    
   )
 }
 
 
 const StyleDiv = styled('div')`
-height: 100%;
+  
+  padding-bottom: 50%;
   
   .header{
   padding: 10px 20px;
@@ -31,7 +34,7 @@ height: 100%;
 
 .body{
   text-align: center;
-  margin-top: 250px;
+  margin-top: 50%;
   padding: 10px 20px;
   font-style: normal;
   font-weight: 600;

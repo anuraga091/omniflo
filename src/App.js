@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './Home/Home';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { Card } from '@mui/material';
 import RageCoffee from './Brands/RageCoffee';
 import RageCoffeeStores from './conditions/iflocationallow/brandsStore/RageCoffeeStores';
 import LocationDenyPage from './conditions/iflocationdeny/LocationDenyPage';
@@ -9,7 +10,7 @@ import LoadingScreen from './loader/LoadingScreen';
 
 function App() {
   return (
-    <div>
+    <Card sx={{ maxWidth: 500, margin: '0 auto', color:'#fff' }}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -22,7 +23,7 @@ function App() {
           
         </Routes>
       </Router>
-    </div>
+    </Card>
   );
 }
 
