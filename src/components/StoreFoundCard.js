@@ -9,7 +9,7 @@ const StoreFoundCard = () => {
             <p className='distance'>{distance}m Away</p>
             <p className='name'>Jmd Supermart</p>
             <p className='location'>Koramangala</p>
-            <Button><img src="../images/location.svg" alt="icon"/> Take me there </Button>
+            <Button><img src="../images/location.svg" alt="icon"/> <a href="geo:37.786971,-122.399677;u=35">Take me there</a> </Button>
         </div>
     </StyleDivElement>
   )
@@ -59,21 +59,25 @@ const StyleDivElement = styled('div')`
       background-size: 600%;
       border-radius: 20px;
       margin: 10px 20px 20px 20px;
-      font-weight: 600;
-      font-size: 16px;
-      text-transform: none;
-      color: #fff;
-      font-family: 'Poppins', sans-serif; 
-      text-decoration: none;
-      padding: 10px 0;
-      position: relative;
-      text-transform: uppercase;
+      
       animation: anime 16s linear infinite;
 
       img{
         width: 24px;
         height: 24px;
         margin-right: 5px;
+    }
+
+    a{
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif; 
+      text-decoration: none;
+      padding: 10px 0;
+      position: relative;
+      text-transform: uppercase;
     }
   }
 
