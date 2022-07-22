@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 //import {useNavigate} from "react-router-dom";
 //import { distance } from '../Data Constants/Data';
 import { styled} from '@mui/material';
@@ -11,15 +11,29 @@ import ButtonCard from '../components/ButtonCard';
 import Usp from '../components/Usp';
 import Footer from '../components/Footer';
 
+import axios from 'axios';
+const brandDetailURL = 'https://api.omniflo.in/getbranddata?brandname=Spice'
+
 const RageCoffee = () => {
+
+    const [data,setData] = useState('');
+
+    useEffect(() => {
+      axios.get(`${brandDetailURL}`).then(res => {
+        setData(res.data)
+      }).catch(err =>{
+        console.log(err)
+      })
+    },[])
+    console.log(window.location.pathname)
   return (
     <div style={{backgroundColor: '#171717'}}>
         <Header/>
         <StyleDivElement>
-          <SpotlightXBrand/>
+          <SpotlightXBrand data={data}/>
           <hr/>
-          <ButtonCard/>
-          <Usp/>
+          <ButtonCard />
+          <Usp data={data}/>
           <Footer/>  
         </StyleDivElement>
        

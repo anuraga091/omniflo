@@ -2,7 +2,10 @@ import React from 'react';
 import { distance } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
 
+
 const StoreFoundCard = () => {
+
+  
   return (
     <StyleDivElement>
         <div className='card'>

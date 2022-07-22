@@ -10,7 +10,7 @@ import Usp from '../../../components/Usp';
 import Footer from '../../../components/Footer';
 
 
-const StoreNotFound = () => {
+const StoreNotFound = ({data}) => {
 
 
   return (

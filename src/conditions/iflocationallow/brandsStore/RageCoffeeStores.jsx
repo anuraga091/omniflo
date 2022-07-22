@@ -8,7 +8,7 @@ import Usp from '../../../components/Usp';
 import Footer from '../../../components/Footer';
 
 
-const RageCoffeeStores = () => {
+const RageCoffeeStores = ({data}) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

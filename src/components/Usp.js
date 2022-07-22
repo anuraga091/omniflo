@@ -1,14 +1,14 @@
 import React from 'react';
 import { styled } from '@mui/material';
-import { imageData } from '../Data Constants/Data';
 
-const Usp = () => {
+
+const Usp = ({data}) => {
   return (
     <StyleDivElement>
-        {imageData.map(data => (
+        
         <div className="story">
             <div className='heading'>
-            <img className='image1' src={data.url} alt={data.alt}/>
+            <img className='image1' src={data.brandLogo} alt={data.alt}/>
             <div>
                 <h4>STORY OF</h4> 
                 <p>{data.name}</p>
@@ -16,14 +16,14 @@ const Usp = () => {
             </div>
 
             <div className='body'>
-            <img className='image2' src={data.story_img} alt="Virat Kohli"/>
+            <img className='image2' src={data.uspLogo} alt="Virat Kohli"/>
             <p>{data.story}</p>
             </div>
             <div className="logos">
                 <div className="icon">
-                <img className='logo' src="/images/icon-1.svg" alt=""/>
-                <img className='logo' src="/images/icon-2.svg" alt=""/>
-                <img  className='logo' src="/images/icon-3.svg" alt=""/>
+                <img className='logo' src={data.icons} alt=""/>
+                <img className='logo' src={data.icons} alt=""/>
+                <img  className='logo' src={data.icons} alt=""/>
                 </div>
                 <div className="icon-text">
                 <p className='logo-text'>No Gut Health</p>
@@ -32,7 +32,7 @@ const Usp = () => {
                 </div> 
             </div>
         </div>
-    ))}
+    
     </StyleDivElement>
   )
 }
