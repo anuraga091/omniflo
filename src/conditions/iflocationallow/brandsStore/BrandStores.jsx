@@ -6,32 +6,41 @@ import SpotlightXBrand from '../../../components/SpotlightXBrand';
 import StoreFoundCard from '../../../components/StoreFoundCard';
 import Usp from '../../../components/Usp';
 import Footer from '../../../components/Footer';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 
-const RageCoffeeStores = ({data}) => {
+const BrandStores = (props) => {
   const [loading, setLoading] = useState(false);
 
+  const brand = useParams();
+  const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
+
   useEffect(() => {
+    axios.get(`${brandDetailURL}`).then(resp => {
+    props.brandName(resp.data)
+  })
+  
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
     },6000)
-  }, [])
+  }, [brandDetailURL,props])
 
   return (
     <>
       <div style={{backgroundColor: '#171717'}}>
           <Header/>
             <StyleDivElement>
-              <SpotlightXBrand/>
+              <SpotlightXBrand data={props.data}/>
               <hr/>
               {
                 loading ?  
                   <LoadingScreen/>
                 : 
-                  <StoreFoundCard/>
+                  <StoreFoundCard data={props.data}/>
               }
-              <Usp/>
+              <Usp data={props.data}/>
               <Footer/>
             </StyleDivElement> 
       </div>
@@ -56,4 +65,4 @@ const StyleDivElement = styled('div')`
   }
 `;
 
-export default RageCoffeeStores;
+export default BrandStores;

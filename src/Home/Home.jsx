@@ -6,7 +6,7 @@ const Home = () => {
     <StyleDiv style={{backgroundColor: '#171717' , height: '100%'}}>
       <p className='header'><a href="/">Spotlight</a></p>
       <p className='body'>Your Favourite Brands Near You</p>
-      <p className='anchor'><a href="/rageCoffee">Rage Coffee</a></p>
+      <p className='anchor'><a href={encodeURI("/Rage Coffee")}>Rage Coffee</a></p>
     </StyleDiv>
     
   )

@@ -1,22 +1,31 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Header from '../../components/Header';
 import SpotlightXBrand from '../../components/SpotlightXBrand';
 import LocationDenyCard from '../../components/LocationDenyCard';
 import Usp from '../../components/Usp';
 import Footer from '../../components/Footer';
 import styled from '@emotion/styled';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-const LocationDenyPage = () => {
+const LocationDenyPage = (props) => {
 
+  const brand = useParams();
+  const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
+  useEffect(() => {
+    axios.get(`${brandDetailURL}`).then(resp => {
+    props.brandName(resp.data)
+  })
+  },[brandDetailURL,props])
 
   return (
     <div style={{backgroundColor: '#171717'}}>
         <Header/>
           <StyleDivElement>
-            <SpotlightXBrand/>
+            <SpotlightXBrand data={props.data}/>
             <hr/>
             <LocationDenyCard/>
-            <Usp/>
+            <Usp data={props.data}/>
             <Footer/>
             
           </StyleDivElement>

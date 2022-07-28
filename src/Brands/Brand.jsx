@@ -1,8 +1,7 @@
-import React,{useState,useEffect} from 'react';
-//import {useNavigate} from "react-router-dom";
-//import { distance } from '../Data Constants/Data';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { styled} from '@mui/material';
-
+import axios from 'axios';
 
 //importing components
 import Header from '../components/Header';
@@ -11,29 +10,27 @@ import ButtonCard from '../components/ButtonCard';
 import Usp from '../components/Usp';
 import Footer from '../components/Footer';
 
-import axios from 'axios';
-const brandDetailURL = 'https://api.omniflo.in/getbranddata?brandname=Spice'
 
-const RageCoffee = () => {
 
-    const [data,setData] = useState('');
+const Brand = (props) => {
 
-    useEffect(() => {
-      axios.get(`${brandDetailURL}`).then(res => {
-        setData(res.data)
-      }).catch(err =>{
-        console.log(err)
-      })
-    },[])
-    console.log(window.location.pathname)
+  const brand = useParams();
+  const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
+
+  useEffect(() => {
+    axios.get(`${brandDetailURL}`).then(resp => {
+    props.brandName(resp.data)
+  })
+  },[brandDetailURL,props])
+  
   return (
     <div style={{backgroundColor: '#171717'}}>
         <Header/>
         <StyleDivElement>
-          <SpotlightXBrand data={data}/>
+          <SpotlightXBrand data={props.data}/>
           <hr/>
-          <ButtonCard />
-          <Usp data={data}/>
+          <ButtonCard data={props.data}/>
+          <Usp data={props.data}/>
           <Footer/>  
         </StyleDivElement>
        
@@ -60,4 +57,4 @@ const StyleDivElement = styled('div')`
   }  
 `;
 
-export default RageCoffee;
+export default Brand;

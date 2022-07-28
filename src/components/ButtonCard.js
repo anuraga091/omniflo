@@ -2,14 +2,16 @@ import React,{useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import { distance } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
+import * as geolib from 'geolib';
 
-const ButtonCard = () => {
+const ButtonCard = ({data}) => {
 
     const navigate = useNavigate();
     const [Location, setLocation] = useState({
         loaded: false,
         coordinates: {lat : '', lng: ''}
     });
+    
 
   useEffect(() => {
         if(!("geolocation" in navigator)){
@@ -29,14 +31,26 @@ const ButtonCard = () => {
                 lng: Location.coords.longitude
             }
         })
+        
 
-        console.log(Location)
+        console.log(
+            'You are ',
+            geolib.getDistance({
+              latitude: Location.coords.latitude,
+              longitude: Location.coords.longitude
+
+            }, {
+                latitude: 51.525,
+                longitude: 7.4575,
+            }),
+            'meters away from 51.525, 7.4575'
+        );
 
         if(distance <= 500){
-            navigate("/rageCoffee/stores")
+            navigate("Stores")
         }
         else{
-          navigate("/rageCoffee/storenotfound")
+          navigate("Store Not Found")
         }
         console.log(distance)
         
@@ -49,7 +63,7 @@ const ButtonCard = () => {
             error,
         })
       console.log(error)
-      navigate("/rageCoffee/locationdenypage")
+      navigate("Location denied")
       
     }
 

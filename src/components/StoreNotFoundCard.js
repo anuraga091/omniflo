@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { distance } from '../Data Constants/Data';
 
 
-const StoreNotFoundCard = () => {
+const StoreNotFoundCard = ({data}) => {
   return (
     <StyleDivElement>
         <div className='card'>

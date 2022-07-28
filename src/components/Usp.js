@@ -1,8 +1,9 @@
 import React from 'react';
 import { styled } from '@mui/material';
-
+import { useParams } from 'react-router-dom';
 
 const Usp = ({data}) => {
+  const brand = useParams();
   return (
     <StyleDivElement>
         
@@ -11,7 +12,7 @@ const Usp = ({data}) => {
             <img className='image1' src={data.brandLogo} alt={data.alt}/>
             <div>
                 <h4>STORY OF</h4> 
-                <p>{data.name}</p>
+                <p>{brand.brandName}</p>
             </div>
             </div>
 

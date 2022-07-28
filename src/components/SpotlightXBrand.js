@@ -1,11 +1,11 @@
 import React  from 'react';
 import { styled } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 
 
 const SpotlightXBrand = ({data}) => {
-   
-  
+  const brand = useParams();
   return (
     <>
         
@@ -16,7 +16,7 @@ const SpotlightXBrand = ({data}) => {
               <img src={data.brandLogo} alt='/'/>
             </div>
             <h6>
-              <b>Rage Coffee</b>
+              <b>{brand.brandName}</b>
               <span> is now on </span>
               <b> Spotlight </b>
             </h6>

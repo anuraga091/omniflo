@@ -3,9 +3,9 @@ import { distance } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
 
 
-const StoreFoundCard = () => {
-
+const StoreFoundCard = ({data}) => {
   
+  console.log(data)
   return (
     <StyleDivElement>
         <div className='card'>
