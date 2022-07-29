@@ -12,11 +12,14 @@ const ButtonCard = ({data}) => {
         coordinates: {lat : '', lng: ''}
     });
 
-    console.log(data)
+
+   
    
     
 
   useEffect(() => {
+        
+
         if(!("geolocation" in navigator)){
             onError({
                 code: 0,
@@ -34,28 +37,34 @@ const ButtonCard = ({data}) => {
                 lng: Location.coords.longitude
             }
         })
-        
-
-        console.log(
-            'You are ',
-            geolib.getDistance({
+        const storeDistance = []
+        if (data && data.stores){
+          for (let i = 0; i < data.stores.length; i++) {
+            
+            const element = data.stores[i];
+            
+            const locationDistance =geolib.getDistance({
               latitude: Location.coords.latitude,
               longitude: Location.coords.longitude
-
             }, {
-                latitude: 51.525,
-                longitude: 7.4575,
-            }),
-            'meters away from 51.525, 7.4575'
-        );
-
-        if(distance <= 500){
+                latitude: element.lat,
+                longitude: element.long,
+            })
+            storeDistance.push(Math.round(locationDistance/1000))
+            
+            
+          }
+          console.log(storeDistance[0])
+          
+    }
+       
+        if((storeDistance[0]) <= (5000)){
             navigate("Stores")
         }
         else{
           navigate("Store Not Found")
         }
-        console.log(distance)
+        console.log(storeDistance)
         
         
     }

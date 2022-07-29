@@ -4,8 +4,6 @@ import { styled, Button } from '@mui/material';
 
 
 const StoreFoundCard = ({data}) => {
-  
-  console.log(data)
   return (
     <StyleDivElement>
         <div className='card'>

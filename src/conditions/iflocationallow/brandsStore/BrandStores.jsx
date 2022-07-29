@@ -18,8 +18,8 @@ const BrandStores = (props) => {
 
   useEffect(() => {
     axios.get(`${brandDetailURL}`).then(resp => {
-    props.brandName(resp.data)
-  })
+      props.brandName(resp.data)
+    })
   
     setLoading(true)
     setTimeout(() => {
