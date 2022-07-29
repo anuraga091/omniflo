@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
-import { distance } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
 import * as geolib from 'geolib';
 
@@ -11,11 +10,6 @@ const ButtonCard = ({data}) => {
         loaded: false,
         coordinates: {lat : '', lng: ''}
     });
-
-
-   
-   
-    
 
   useEffect(() => {
         
