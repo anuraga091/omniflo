@@ -18,7 +18,7 @@ const StoreNotFound = (props) => {
     axios.get(`${brandDetailURL}`).then(resp => {
     props.brandName(resp.data)
   })
-  },[brandDetailURL,props])
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div style={{backgroundColor: '#171717'}}>
