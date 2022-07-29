@@ -11,6 +11,9 @@ const ButtonCard = ({data}) => {
         loaded: false,
         coordinates: {lat : '', lng: ''}
     });
+
+    console.log(data)
+   
     
 
   useEffect(() => {
