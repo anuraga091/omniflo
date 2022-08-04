@@ -83,6 +83,7 @@ const ButtonCard = ({data}) => {
       <div className='card'>
           <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
           <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.svg" alt="icon"/>  Find a Store Near Me </Button>
+          <p className='ask'>We ask for location permission to locate stores near you. Click “Allow” once you see a popup.</p>
       </div>
     </StyleDiv>
   )
@@ -105,6 +106,14 @@ const StyleDiv = styled('div')`
         font-weight: 700;
         color: #F38137;
       }
+    }
+
+    .ask{
+      font-weight: 400;
+      font-size: 11px;
+      text-align: center;
+      color: #ADADAD;
+      margin:  10px 30px;
     }
 
     button{ 
