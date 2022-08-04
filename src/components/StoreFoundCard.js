@@ -14,9 +14,6 @@ const StoreFoundCard = ({data}) => {
           for (let i = 0; i < data.stores.length; i++) {
             
             const element = data.stores[i];
-
-            
-            
             const locationDistance =geolib.getDistance({
               latitude: Location.coords.latitude,
               longitude: Location.coords.longitude
@@ -26,10 +23,7 @@ const StoreFoundCard = ({data}) => {
             })
             const distance = Math.round(locationDistance/1000)
             dist.storeDistance = distance
-            const finalData = Object.assign(element, dist)
-            
-            console.log(finalData)
-            
+            Object.assign(element, dist)
             
           }
           
@@ -38,6 +32,8 @@ const StoreFoundCard = ({data}) => {
     }
   );
 
+  console.log(data)
+  
   return (
     <StyleDivElement>
       {data && data.stores ?
