@@ -48,11 +48,11 @@ const ButtonCard = ({data}) => {
             
             
           }
-          console.log(storeDistance[0])
+          
           
     }
        
-        if((storeDistance[0]) <= (5000)){
+        if(Math.min(...storeDistance) <= 50){
             navigate("Stores")
         }
         else{

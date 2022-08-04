@@ -1,17 +1,58 @@
 import React from 'react';
-import { distance } from '../Data Constants/Data';
 import { styled, Button } from '@mui/material';
+import * as geolib from 'geolib';
 
 
 const StoreFoundCard = ({data}) => {
+
+  navigator.geolocation.getCurrentPosition(
+    (Location) => {
+        
+        const dist = {storeDistance: ''}
+        
+        if (data && data.stores){
+          for (let i = 0; i < data.stores.length; i++) {
+            
+            const element = data.stores[i];
+
+            
+            
+            const locationDistance =geolib.getDistance({
+              latitude: Location.coords.latitude,
+              longitude: Location.coords.longitude
+            }, {
+                latitude: element.lat,
+                longitude: element.long,
+            })
+            const distance = Math.round(locationDistance/1000)
+            dist.storeDistance = distance
+            const finalData = Object.assign(element, dist)
+            
+            console.log(finalData)
+            
+            
+          }
+          
+          
+    }
+    }
+  );
+
   return (
     <StyleDivElement>
-        <div className='card'>
-            <p className='distance'>{distance}m Away</p>
-            <p className='name'>Jmd Supermart</p>
+      {data && data.stores ?
+       data.stores.map( (d , index) => (
+        <div className='card' key={index} >
+            <p className='distance'>{d.storeDistance}km Away</p>
+            <p className='name' >{d.storeName}</p>
             <p className='location'>Koramangala</p>
             <Button><img src="../images/location.svg" alt="icon"/> <a href="geo:37.786971,-122.399677;u=35">Take me there</a> </Button>
         </div>
+      ))
+      :
+      ''
+    }
+        
     </StyleDivElement>
   )
 }

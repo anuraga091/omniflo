@@ -12,8 +12,8 @@ const Footer = () => {
             <p>Spotlight is The Coolest Retail Shelf that brings premium online brands near you!</p>
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}} className="MUIIcon">
-            <InstagramIcon />
-            <TwitterIcon/>
+            <a href="https://www.instagram.com/omniflo.in/"><InstagramIcon /></a>
+            <a href="https://twitter.com/Omniflo_in"><TwitterIcon/></a>
             </div>
             
             <hr/>

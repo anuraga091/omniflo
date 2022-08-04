@@ -21,11 +21,19 @@ const Usp = ({data}) => {
             <p>{data.story}</p>
             </div>
             <div className="logos">
-                <div className="icon">
-                <img className='logo' src={data.icons} alt=""/>
-                <img className='logo' src={data.icons} alt=""/>
-                <img  className='logo' src={data.icons} alt=""/>
-                </div>
+                
+                  {
+                    data && data.icons ?
+                    <div className="icon">
+                      <img className='logo' src={data.icons[0]} alt=""/>
+                      <img className='logo' src={data.icons[1]} alt=""/>
+                      <img  className='logo' src={data.icons[2]} alt=""/>
+                    </div>
+                    :
+                    ''
+                  }
+                
+                
                 <div className="icon-text">
                 <p className='logo-text'>No Gut Health</p>
                 <p className='logo-text'>No Bitterness</p>
