@@ -33,13 +33,13 @@ const StoreFoundCard = ({data}) => {
   );
 
   console.log(data)
-  
+
   return (
     <StyleDivElement>
       {data && data.stores ?
        data.stores.map( (d , index) => (
         <div className='card' key={index} >
-            <p className='distance'>{d.storeDistance}km Away</p>
+            <p className='distance'>{d.storeDistance}</p>
             <p className='name' >{d.storeName}</p>
             <p className='location'>Koramangala</p>
             <Button><img src="../images/location.svg" alt="icon"/> <a href="geo:37.786971,-122.399677;u=35">Take me there</a> </Button>
