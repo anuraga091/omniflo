@@ -58,7 +58,6 @@ const ButtonCard = ({data}) => {
         else{
           navigate("Store Not Found")
         }
-        console.log(storeDistance)
         
         
     }
