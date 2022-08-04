@@ -4,7 +4,7 @@ import * as geolib from 'geolib';
 
 
 const StoreFoundCard = ({data}) => {
-
+  
   navigator.geolocation.getCurrentPosition(
     (Location) => {
         
