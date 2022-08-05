@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 const StoreFoundCard = ({data}) => {
   const [brandData, setBrandData] = useState(null)
+  var newData = Object();
   navigator.geolocation.getCurrentPosition(
     (Location) => {
         
@@ -16,6 +17,8 @@ const StoreFoundCard = ({data}) => {
           for (let i = 0; i < data.stores.length; i++) {
             
             const element = data.stores[i];
+
+            //calculating distance using lat and long
             const locationDistance =geolib.getDistance({
               latitude: Location.coords.latitude,
               longitude: Location.coords.longitude
@@ -24,26 +27,34 @@ const StoreFoundCard = ({data}) => {
                 longitude: element.long,
             })
             const distance = Math.round(locationDistance/1000)
+
+            //updating in dist object
             dist.storeDistance = distance
+
+            //adding distance into data.stores
             Object.assign(element, dist)
             
           }
+
+          //sorting with distance
           var byDistance = data.stores.slice(0);
           byDistance.sort(function(a,b) {
             return a.storeDistance - b.storeDistance;
           });
-          data.stores = byDistance
-          
-          
+
+          //updating data.stores with sorted data.stores
+          data.stores = byDistance   
     }
     }
   );
+      newData = data
+      console.log('This is new data',newData)
 
   useEffect(() => {
-      setBrandData(data)
+      setBrandData(newData)
       
   },[])// eslint-disable-line react-hooks/exhaustive-deps
-  console.log(brandData)
+  //console.log(brandData)
 
   return (
     <StyleDivElement>
