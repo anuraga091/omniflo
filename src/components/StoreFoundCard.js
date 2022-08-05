@@ -41,9 +41,9 @@ const StoreFoundCard = ({data}) => {
 
   useEffect(() => {
       setBrandData(data)
-      console.log(data)
+      
   },[])// eslint-disable-line react-hooks/exhaustive-deps
-  
+  console.log(brandData)
 
   return (
     <StyleDivElement>
