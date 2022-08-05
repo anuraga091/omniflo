@@ -26,13 +26,18 @@ const StoreFoundCard = ({data}) => {
             Object.assign(element, dist)
             
           }
-          
+          var byDistance = data.stores.slice(0);
+          byDistance.sort(function(a,b) {
+            return a.storeDistance - b.storeDistance;
+          });
+          data.stores = byDistance
           
     }
     }
   );
 
   console.log(data)
+  
 
   return (
     <StyleDivElement>
