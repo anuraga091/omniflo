@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { styled, Button } from '@mui/material';
 import * as geolib from 'geolib';
+import { useEffect } from 'react';
+
 
 
 const StoreFoundCard = ({data}) => {
-  
+  const [brandData, setBrandData] = useState(null)
   navigator.geolocation.getCurrentPosition(
     (Location) => {
         
@@ -32,17 +34,21 @@ const StoreFoundCard = ({data}) => {
           });
           data.stores = byDistance
           
+          
     }
     }
   );
 
-  console.log(data)
+  useEffect(() => {
+      setBrandData(data)
+      console.log(data)
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
   
 
   return (
     <StyleDivElement>
-      {data && data.stores ?
-       data.stores.map( (d , index) => (
+      {brandData && brandData.stores ?
+       brandData.stores.map( (d , index) => (
         <div className='card' key={index} >
             <p className='distance'>{d.storeDistance}km Away</p>
             <p className='name' >{d.storeName}</p>
