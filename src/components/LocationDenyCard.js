@@ -12,7 +12,7 @@ const LocationDenyCard = () => {
             <p className='two'>Unfortunately, we can’t show stores near you if you deny location permission.</p>
             <hr/>
             <p className='three'>Everyone deserves a second chance. 
-              This is how you can enable location permission 
+              <a href="https://support.google.com/chrome/answer/142065">This is how </a> you can enable location permission 
               again to find stores nearest to you.
             </p>
         </div>
@@ -64,6 +64,9 @@ const StyleDivElement = styled('div')`
     font-size: 11px;
     text-align: center;
     color: #ADADAD;
+    a{
+      color: #ADADAD;
+    }
    }
     button{
       background: linear-gradient(90deg, #3F0BDB 0%, #FF0C67 100%);
