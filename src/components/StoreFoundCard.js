@@ -61,12 +61,10 @@ const StoreFoundCard = ({data}) => {
       {brandData && brandData.stores ?
        brandData.stores.map( (d , index) => (
         <div className='card' key={index} >
-          <div>
             <p className='distance'>{d.storeDistance}km Away</p>
             <p className='name' >{d.storeName}</p>
             <p className='location'>Koramangala</p>
             <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${d.lat},${d.long};`}>Take me there</a> </Button>
-            </div>
         </div>
       ))
       :
