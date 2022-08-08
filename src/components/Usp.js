@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const Usp = ({data}) => {
   const brand = useParams();
+  console.log(decodeURIComponent(data.story))
   return (
     <StyleDivElement>
         
@@ -17,29 +18,26 @@ const Usp = ({data}) => {
             </div>
 
             <div className='body'>
-            <img className='image2' src={data.uspLogo} alt="Virat Kohli"/>
-            <p>{data.story}</p>
+            <img className='image2' src={data.descriptionImage} alt="description" type="text/html"/>
+            <p>{decodeURIComponent(data.story)}</p>
             </div>
-            <div className="logos">
-                
-                  {
-                    data && data.icons ?
-                    <div className="icon">
-                      <img className='logo' src={data.icons[0]} alt=""/>
-                      <img className='logo' src={data.icons[1]} alt=""/>
-                      <img  className='logo' src={data.icons[2]} alt=""/>
-                    </div>
-                    :
-                    ''
-                  }
-                
-                
-                <div className="icon-text">
-                <p className='logo-text'>No Gut Health</p>
-                <p className='logo-text'>No Bitterness</p>
-                <p className='logo-text'>Rich Aroma</p>
-                </div> 
-            </div>
+             {
+              data && data.icons ?
+              <div className="logos">   
+                  <div className="icon">
+                    <img className='logo' src={data.icons[0].url} alt=""/>
+                    <img className='logo' src={data.icons[1].url} alt=""/>
+                    <img  className='logo' src={data.icons[2].url} alt=""/>
+                  </div>
+                  <div className="icon-text">
+                    <p className='logo-text'>{data.icons[0].name}</p>
+                    <p className='logo-text'>{data.icons[1].name}</p>
+                    <p className='logo-text'>{data.icons[2].name}</p>
+                  </div> 
+              </div>
+             :
+            ''
+            }
         </div>
     
     </StyleDivElement>
@@ -107,17 +105,19 @@ const StyleDivElement = styled('div')`
       display: flex;
       text-align: center;
       justify-content: space-around;
+      align-items: center;
       
     }
     .logo{
       width: 30px;
-      height: 26px;
-      margin: 0px 20px;
+      height: 30px;
+      
       
     }
     .icon-text{
       display: flex;
       align-items: center;
+      text-align: center;
       justify-content: space-around;
     }
     .logo-text{

@@ -6,12 +6,14 @@ import { useParams } from 'react-router-dom';
 
 const SpotlightXBrand = ({data}) => {
   const brand = useParams();
+
+  
   return (
     <>
         
         <StyleDivElement>
             <div className='img'>
-              <img src={data.brandLogo} alt="Spotlight Logo"/> 
+              <img src="/images/spotlight logo.jpg" alt="Spotlight Logo"/> 
               <span> X </span>
               <img src={data.brandLogo} alt='/'/>
             </div>
