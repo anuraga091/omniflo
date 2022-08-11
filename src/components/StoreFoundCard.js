@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 import { styled, Button } from '@mui/material';
 import * as geolib from 'geolib';
-import { useEffect } from 'react';
 const StoreFoundCard = ({data}) => {
   const [brandData, setBrandData] = useState(null)
   var newData = {};
