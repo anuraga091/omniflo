@@ -11,7 +11,7 @@ const Usp = ({data}) => {
         <div className="story">
             <div className='heading'>
             <img className='image1' src={data.brandLogo} alt={data.alt}/>
-            <div>
+            <div style={{marginTop: 15, marginLeft: 5}}>
                 <h4>STORY OF</h4> 
                 <p>{brand.brandName}</p>
             </div>
@@ -55,8 +55,8 @@ const StyleDivElement = styled('div')`
       color: rgba(255, 255, 255, 0.6);
       padding: 10px 20px;
       .image1{
-        width: 50px;
-        height: 50px;
+        width: 75px;
+        height: 75px;
         border-radius: 2px;
         margin-right: 10px;
        
@@ -75,14 +75,14 @@ const StyleDivElement = styled('div')`
     }
     
     .body{
-      display: flex;
-      justify-content: space-evenly;
-      margin-top: 20px;
+      
+      margin: 20px;
+      
       .image2{
-        width: 150px;
-        height: 150px;
+        width: 80%;
+        height: 200px;
         border-radius: 0;
-        margin: 10px ;
+        margin-bottom: 10px;
       }
       p{
         font-size: 14px;
