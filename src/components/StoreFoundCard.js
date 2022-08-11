@@ -2,60 +2,58 @@ import React,{useState} from 'react';
 import { styled, Button } from '@mui/material';
 import * as geolib from 'geolib';
 import { useEffect } from 'react';
-
-
-
 const StoreFoundCard = ({data}) => {
   const [brandData, setBrandData] = useState(null)
   var newData = {};
-  navigator.geolocation.getCurrentPosition(
-    (Location) => {
-        
-        const dist = {storeDistance: ''}
-        
-        if (data && data.stores){
-          for (let i = 0; i < data.stores.length; i++) {
-            
-            const element = data.stores[i];
-
-            //calculating distance using lat and long
-            const locationDistance =geolib.getDistance({
-              latitude: Location.coords.latitude,
-              longitude: Location.coords.longitude
-            }, {
-                latitude: element.lat,
-                longitude: element.long,
-            })
-            const distance = Math.round(locationDistance/1000)
-
-            //updating in dist object
-            dist.storeDistance = distance
-
-            //adding distance into data.stores
-            Object.assign(element, dist)
-            
-          }
-
-          //sorting with distance
-          var byDistance = data.stores.slice(0);
-          byDistance.sort(function(a,b) {
-            return a.storeDistance - b.storeDistance;
-          });
-
-          //updating data.stores with sorted data.stores
-          data.stores = byDistance   
-    }
-    }
-  );
+  var findDistance = new Promise(function(resolve, reject) {
+    navigator.geolocation.getCurrentPosition(
+      (Location) => {
+          
+          const dist = {storeDistance: ''}
+          
+          if (data && data.stores){
+            for (let i = 0; i < data.stores.length; i++) {
+              
+              const element = data.stores[i];
+  
+              //calculating distance using lat and long
+              const locationDistance =geolib.getDistance({
+                latitude: Location.coords.latitude,
+                longitude: Location.coords.longitude
+              }, {
+                  latitude: element.lat,
+                  longitude: element.long,
+              })
+              const distance = Math.round(locationDistance/1000)
+  
+              //updating in dist object
+              dist.storeDistance = distance
+  
+              //adding distance into data.stores
+              Object.assign(element, dist)
+              
+            }
+  
+            //sorting with distance
+            var byDistance = data.stores.slice(0);
+            byDistance.sort(function(a,b) {
+              return a.storeDistance - b.storeDistance;
+            });
+  
+            //updating data.stores with sorted data.stores
+            data.stores = byDistance   
+            resolve(data)
+      }
+      }
+    );
+  })
+  
+  
       newData = data
       console.log('This is new data',newData)
-
-  useEffect(() => {
-      setBrandData(newData)
-      
-  },[])// eslint-disable-line react-hooks/exhaustive-deps
-  //console.log(brandData)
-
+      findDistance.then(function(value){
+        setBrandData(newData)
+      })
   return (
     <StyleDivElement>
       {brandData && brandData.stores ?
@@ -73,7 +71,6 @@ const StoreFoundCard = ({data}) => {
     </StyleDivElement>
   )
 }
-
 const StyleDivElement = styled('div')`
 .card{
     margin:  20px;
@@ -85,7 +82,6 @@ const StyleDivElement = styled('div')`
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.2);
     
-
     .distance{
         margin: 0;
         padding: 20px 0;
@@ -111,7 +107,6 @@ const StyleDivElement = styled('div')`
         font-size: 14px;
         line-height: 24px;
         text-align: center;
-
     }
     button{
       background: linear-gradient(-45deg, #FFA63D, #3F0BDB, #FF0C67,#338AFF);
@@ -120,13 +115,11 @@ const StyleDivElement = styled('div')`
       margin: 10px 20px 20px 20px;
       
       animation: anime 16s linear infinite;
-
       img{
         width: 24px;
         height: 24px;
         margin-right: 5px;
     }
-
     a{
       text-decoration: none;
       font-weight: 600;
@@ -139,7 +132,6 @@ const StyleDivElement = styled('div')`
       text-transform: uppercase;
     }
   }
-
     @keyframes anime {
         0%{
         background-position: 0% 50%
