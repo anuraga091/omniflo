@@ -11,7 +11,7 @@ const Usp = ({data}) => {
         <div className="story">
             <div className='heading'>
             <img className='image1' src={data.brandLogo} alt={data.alt}/>
-            <div style={{marginTop: 15, marginLeft: 5}}>
+            <div style={{marginTop: 5, marginLeft: 5}}>
                 <h4>STORY OF</h4> 
                 <p>{brand.brandName}</p>
             </div>
@@ -55,9 +55,9 @@ const StyleDivElement = styled('div')`
       color: rgba(255, 255, 255, 0.6);
       padding: 10px 20px;
       .image1{
-        width: 75px;
-        height: 75px;
-        border-radius: 2px;
+        width: 100px;
+        height: 100%;
+        border-radius: 0;
         margin-right: 10px;
        
       }

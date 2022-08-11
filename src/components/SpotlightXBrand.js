@@ -13,9 +13,9 @@ const SpotlightXBrand = ({data}) => {
         
         <StyleDivElement>
             <div className='img'>
-              <img src="/images/spotlight logo.jpg" alt="Spotlight Logo"/> 
+              <img className='image1' src="/images/spotlight logo.jpg" alt="Spotlight Logo"/> 
               <span> X </span>
-              <img src={data.brandLogo} alt='/'/>
+              <img className='image2' src={data.brandLogo} alt='/'/>
             </div>
             <h6>
               <b>{brand.brandName}</b>
@@ -37,14 +37,19 @@ const StyleDivElement = styled('div')`
       justify-content: space-evenly;
     }
 
-  img{
+  .image1{
     width: 150px;
     height: 150px;
-    
     border-radius: 50%;
   }
+  .image2{
+    width: 150px;
+    height: 100%;
+    margin-top: 55px;
+    border-radius: 0px;
+  }
   span{
-    margin-top: 50px;
+    margin-top: 75px;
   }
   h6{
     text-align: center;
