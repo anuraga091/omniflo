@@ -37,7 +37,7 @@ const ButtonCard = ({data}) => {
             
             const element = data.stores[i];
             
-            const locationDistance =geolib.getDistance({
+            const locationDistance =geolib.getPreciseDistance({
               latitude: Location.coords.latitude,
               longitude: Location.coords.longitude
             }, {
@@ -51,6 +51,7 @@ const ButtonCard = ({data}) => {
           
           
     }
+    console.log(Math.min(...storeDistance))
        
         if(Math.min(...storeDistance) <= 50){
             navigate("Stores")

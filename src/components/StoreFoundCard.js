@@ -16,9 +16,9 @@ const StoreFoundCard = ({data}) => {
               const element = data.stores[i];
   
               //calculating distance using lat and long
-              const locationDistance =geolib.getDistance({
+              const locationDistance =geolib.getPreciseDistance({
                 latitude: Location.coords.latitude,
-                longitude: Location.coords.longitude
+                longitude: Location.coords.longitude,
               }, {
                   latitude: element.lat,
                   longitude: element.long,
@@ -49,7 +49,6 @@ const StoreFoundCard = ({data}) => {
   
   
       newData = data
-      console.log('This is new data',newData)
       findDistance.then(function(value){
         setBrandData(newData)
       })
