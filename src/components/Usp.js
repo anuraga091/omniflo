@@ -71,6 +71,7 @@ const StyleDivElement = styled('div')`
         text-transform: uppercase;
         margin-bottom: 0;
         letter-spacing: 19%;
+        
       }
     }
     
@@ -88,18 +89,22 @@ const StyleDivElement = styled('div')`
         font-size: 14px;
         color: rgba(255, 255, 255, 0.6);
         margin-right: 5px;
+        text-align: justify;
       }
     }
     .logos{
       display: flex;
       text-align: center;
-      justify-content: space-around;
+      justify-content: space-evenly;
       align-items: center;
       box-sizing: border-box;
       border: 1px solid #ADADAD;
       border-radius: 8px;
       margin: 10px 20px;
       padding: 20px 10px;
+    }
+    .icon{
+      max-width: 100px;
     }
     
     .logo{

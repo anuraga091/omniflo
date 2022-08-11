@@ -59,8 +59,8 @@ const StoreFoundCard = ({data}) => {
   return (
     <StyleDivElement>
       {brandData && brandData.stores ?
-       brandData.stores.map( (d , index) => (
-        <div className='card' key={index} >
+       brandData.stores.map( (d ) => (
+        <div className='card' key={d._id} >
             <p className='distance'>{d.storeDistance}km Away</p>
             <p className='name' >{d.storeName}</p>
             <p className='location'>Koramangala</p>

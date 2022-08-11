@@ -38,18 +38,18 @@ const StyleDivElement = styled('div')`
     }
 
   .image1{
-    width: 150px;
-    height: 150px;
+    width: 112px;
+    height: 112px;
     border-radius: 50%;
   }
   .image2{
     width: 150px;
     height: 100%;
-    margin-top: 55px;
+    margin-top: 30px;
     border-radius: 0px;
   }
   span{
-    margin-top: 75px;
+    margin-top: 45px;
   }
   h6{
     text-align: center;
