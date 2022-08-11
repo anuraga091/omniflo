@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const Usp = ({data}) => {
   const brand = useParams();
-  console.log(decodeURIComponent(data.story))
+  
   return (
     <StyleDivElement>
         
@@ -23,17 +23,13 @@ const Usp = ({data}) => {
             </div>
              {
               data && data.icons ?
-              <div className="logos">   
-                  <div className="icon">
-                    <img className='logo' src={data.icons[0].url} alt=""/>
-                    <img className='logo' src={data.icons[1].url} alt=""/>
-                    <img  className='logo' src={data.icons[2].url} alt=""/>
-                  </div>
-                  <div className="icon-text">
-                    <p className='logo-text'>{data.icons[0].name}</p>
-                    <p className='logo-text'>{data.icons[1].name}</p>
-                    <p className='logo-text'>{data.icons[2].name}</p>
-                  </div> 
+              <div className="logos"> 
+              {data.icons.map((icon , index) => (
+                <div className="icon" key={index}>
+                    <img className='logo' src={icon.url} alt=""/>
+                    <p className='logo-text'>{icon.name}</p>
+                </div>
+              ))}     
               </div>
              :
             ''
@@ -95,19 +91,17 @@ const StyleDivElement = styled('div')`
       }
     }
     .logos{
+      display: flex;
+      text-align: center;
+      justify-content: space-around;
+      align-items: center;
       box-sizing: border-box;
       border: 1px solid #ADADAD;
       border-radius: 8px;
       margin: 10px 20px;
       padding: 20px 10px;
     }
-    .icon{
-      display: flex;
-      text-align: center;
-      justify-content: space-around;
-      align-items: center;
-      
-    }
+    
     .logo{
       width: 30px;
       height: 30px;

@@ -17,7 +17,12 @@ const BrandStores = (props) => {
   const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
 
   useEffect(() => {
-    axios.get(`${brandDetailURL}`).then(resp => {
+    axios.get(`${brandDetailURL}`,{
+      headers: {
+        'Content-Type': 'text/html',
+      },
+    }).then(resp => {
+      
       props.brandName(resp.data)
     })
   

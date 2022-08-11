@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 const StoreFoundCard = ({data}) => {
   const [brandData, setBrandData] = useState(null)
-  var newData = Object();
+  var newData = {};
   navigator.geolocation.getCurrentPosition(
     (Location) => {
         
@@ -69,8 +69,7 @@ const StoreFoundCard = ({data}) => {
       ))
       :
       ''
-    }
-        
+    } 
     </StyleDivElement>
   )
 }

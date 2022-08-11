@@ -38,8 +38,8 @@ const StyleDivElement = styled('div')`
     }
 
   img{
-    width: 112px;
-    height: 112px;
+    width: 150px;
+    height: 150px;
     
     border-radius: 50%;
   }
