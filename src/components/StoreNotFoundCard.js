@@ -3,14 +3,32 @@ import { TextField, Button} from '@mui/material';
 import styled from '@emotion/styled';
 import * as geolib from 'geolib';
 import { useState } from 'react';
+import { formInput } from '../services/api';
+
+
 
 const StoreNotFoundCard = ({data}) => {
-  const [brandData, setBrandData] = useState(null)
+  
+  //initializing initial input values as object
+  const inputInitialValues = {
+        fullname : '',
+        phone: '',
+        location : ''
+  }
+  
+  const [input, setInput] = useState(inputInitialValues);
+  const [brandData, setBrandData] = useState(null);
+
+  //initializing new data as object
   var newData = {};
+
   var findDistance = new Promise(function(resolve, reject) {
+
+    //getting geoLocation of the user from navigator
     navigator.geolocation.getCurrentPosition(
       (Location) => {
           
+          //intializing dist as object and first input as key-value pair of storeDistance with empty string
           const dist = {storeDistance: ''}
           
           if (data && data.stores){
@@ -52,10 +70,25 @@ const StoreNotFoundCard = ({data}) => {
   
   
       newData = data
+
+      //updating the state of brand data with new data as input
       findDistance.then(function(value){
         setBrandData(newData)
       })
+
+    // getting all the inputs from the form
+    const onInputChange = (e) => {
+        setInput({...input, [e.target.name]: e.target.value})
+    }
+
+    //submitting and sending all the form data on backend and database
+    const handleClick = async () => {
+        let response = await formInput(input)
+        console.log(response)
+    }
+
   return (
+    //rendering store not found card component
     <StyleDivElement>
       {brandData && brandData.stores ?
         <div className='card'>
@@ -64,14 +97,14 @@ const StoreNotFoundCard = ({data}) => {
             <hr className='hr2'/>
             <p className='text1'>How Far Will You Go for Love? </p>
             <p className='text2'>Instead, let us Notify you when we launch near you. </p>
-            <StyleTextFiled id="outlined-basic" label="Full name" variant="outlined" size="small" />
-            <StyleTextFiled id="outlined-basic" label="Phone number" variant="outlined" size="small" />
-            <StyleTextFiled id="outlined-basic" label="Location" variant="outlined" size="small" />
-            <Button><img src="../images/discount.svg" alt="icon"/> Get 25% off on Launch </Button>
+            <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='fullname' label="Full name" variant="outlined" size="small" />
+            <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='phone' label="Phone number" variant="outlined" size="small" />
+            <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='location' label="Location" variant="outlined" size="small" />
+            <Button onClick={() => {handleClick()}}><img src="../images/discount.svg" alt="icon"/> Get 25% off on Launch </Button>
         </div>
         :
         ''
-    }
+      }
     </StyleDivElement>
   )
 }

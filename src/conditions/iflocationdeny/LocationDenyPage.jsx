@@ -13,12 +13,14 @@ const LocationDenyPage = (props) => {
   const brand = useParams();
   const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
   useEffect(() => {
+    //using get request to consume the data from api
     axios.get(`${brandDetailURL}`).then(resp => {
     props.brandName(resp.data)
   })
   },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
+    //rendering location deny page 
     <div style={{backgroundColor: '#171717'}}>
         <Header/>
           <StyleDivElement>

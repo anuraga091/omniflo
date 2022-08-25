@@ -5,12 +5,11 @@ import { useParams } from 'react-router-dom';
 
 
 const SpotlightXBrand = ({data}) => {
+  //getting brand name from the URL
   const brand = useParams();
-
-  
   return (
+    //rendering spotlightXbrand component
     <>
-        
         <StyleDivElement>
             <div className='img'>
               <img className='image1' src="/images/spotlight logo.jpg" alt="Spotlight Logo"/> 

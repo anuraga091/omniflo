@@ -3,9 +3,11 @@ import { styled } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 const Usp = ({data}) => {
+  //getting brand name from the URL
   const brand = useParams();
   
   return (
+    //rendering usp component
     <StyleDivElement>
         
         <div className="story">

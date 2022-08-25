@@ -5,6 +5,7 @@ import { styled} from '@mui/material';
 
 const Footer = () => {
   return (
+    //rendering footer component
     <StyleDivElement>
         <footer>
             <div className='footer'>

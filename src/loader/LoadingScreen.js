@@ -9,7 +9,7 @@ import { styled } from '@mui/material';
 const LoadingScreen = () => {
 
   const [icon, setIcon] = useState(<RadioButtonUncheckedIcon/>);
-  const [text] = useState(['Connecting to server','Grabbing objects','Redndering page','Resolving IP'])
+  const [text] = useState(['Fetching your location','Doing math','Locating nearby stores','Swiping tiktok','Verifying inventory','Finalizing stuff','Tadaa!'])
 
   const doLoad = () => {
       setTimeout(() => {

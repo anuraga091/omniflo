@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 
 const LocationDenyCard = () => {
+  //rendering location deny card component
   return (
     <StyleDivElement>
         <div className='card'>

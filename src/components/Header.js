@@ -3,7 +3,7 @@ import { styled } from '@mui/material';
 
 const Header = () => {
   return (
-    
+    //rendering header component
     <StylePElement><a href="/">Spotlight</a></StylePElement>
    
   )

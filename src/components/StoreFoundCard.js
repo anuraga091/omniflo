@@ -2,15 +2,25 @@ import React,{useState} from 'react';
 import { styled, Button } from '@mui/material';
 import * as geolib from 'geolib';
 const StoreFoundCard = ({data}) => {
-  const [brandData, setBrandData] = useState(null)
+
+  const [brandData, setBrandData] = useState(null);
+
+  //initializing new data as object 
   var newData = {};
+
+  //initializing findDistance function
   var findDistance = new Promise(function(resolve, reject) {
+
+    //getting geoLocation of the user from navigator
     navigator.geolocation.getCurrentPosition(
       (Location) => {
           
+        //intializing dist as object and first input as key-value pair of storeDistance with empty string
           const dist = {storeDistance: ''}
           
           if (data && data.stores){
+
+            //for all the stores in json of data
             for (let i = 0; i < data.stores.length; i++) {
               
               const element = data.stores[i];
@@ -41,18 +51,22 @@ const StoreFoundCard = ({data}) => {
   
             //updating data.stores with sorted data.stores
             data.stores = byDistance   
+
             resolve(data)
       }
       }
     );
   })
   
-  
+      //assigning value of new data = data
       newData = data
       findDistance.then(function(value){
+        //updating the state of brand data with new data as input
         setBrandData(newData)
       })
+
   return (
+    //rendering store found card component
     <StyleDivElement>
       {brandData && brandData.stores ?
        brandData.stores.map( (d ) => (
@@ -60,7 +74,8 @@ const StoreFoundCard = ({data}) => {
             <p className='distance'>{d.storeDistance}km Away</p>
             <p className='name' >{d.storeName}</p>
             <p className='location'>Koramangala</p>
-            <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${d.lat},${d.long}?q=${d.lat},${d.long},${encodeURI(d.storeName)},z=20`}>Take me there</a> </Button>
+            {/* <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${d.lat},${d.long}?q=${encodeURI(d.storeName)},z=20`}>Take me there</a> </Button> */}
+            <Button><img src="../images/location.svg" alt="icon"/> <a href={`https://www.google.com/maps/place/S+MS+PROVISION+STORE/@13.2153839,77.2687015,17z/da[…]83dfbe005ca349!8m2!3d13.2153839!4d77.2687014?authuser=0&hl=en`}>Take me there</a> </Button>
         </div>
       ))
       :
