@@ -75,7 +75,7 @@ const StoreFoundCard = ({data}) => {
             <p className='name' >{d.storeName}</p>
             <p className='location'>Koramangala</p>
             {/* <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${d.lat},${d.long}?q=${encodeURI(d.storeName)},z=20`}>Take me there</a> </Button> */}
-            <Button><img src="../images/location.svg" alt="icon"/> <a href={`https://www.google.com/maps/place/S+MS+PROVISION+STORE/@13.2153839,77.2687015,17z/da[…]83dfbe005ca349!8m2!3d13.2153839!4d77.2687014?authuser=0&hl=en`}>Take me there</a> </Button>
+            <Button><img src="../images/location.svg" alt="icon"/> <a href='https://www.google.com/maps/place/S+MS+PROVISION+STORE/@13.2153839,77.2687015,17z/q=S+MS+PROVISION+STORE'>Take me there</a> </Button>
         </div>
       ))
       :
