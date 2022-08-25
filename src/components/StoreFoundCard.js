@@ -74,7 +74,7 @@ const StoreFoundCard = ({data}) => {
             <p className='distance'>{d.storeDistance}km Away</p>
             <p className='name' >{d.storeName}</p>
             <p className='location'>Koramangala</p>
-            <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${d.lat},${d.long}?q=${encodeURI(d.storeName)},z=20`}>Take me there</a> </Button>   
+            <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${d.lat},${d.long},z=20?q=${encodeURI(d.storeName)}`}>Take me there</a> </Button>   
         </div>
       ))
       :
