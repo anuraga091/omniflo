@@ -35,7 +35,7 @@ const BrandStores = (props) => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    },5000)
+    },4000)
   },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (

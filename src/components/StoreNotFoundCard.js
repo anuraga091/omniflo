@@ -4,23 +4,85 @@ import styled from '@emotion/styled';
 import * as geolib from 'geolib';
 import { useState } from 'react';
 import { formInput } from '../services/api';
+import { useParams } from 'react-router-dom';
+
 
 
 
 const StoreNotFoundCard = ({data}) => {
+  const brand = useParams();
+  const [setMessage] = useState('');
+  const [error, setError] = useState(null);
+
+  const [setPhoneMessage] = useState('');
+  const [phoneError, setPhoneError] = useState(null);
+  
   
   //initializing initial input values as object
   const inputInitialValues = {
         fullname : '',
         phone: '',
-        location : ''
+        email : '',
+        brand: '',
+        lat: '',
+        long: ''
   }
-  
+
   const [input, setInput] = useState(inputInitialValues);
   const [brandData, setBrandData] = useState(null);
 
+  const cardInitialValues = {
+    form: {
+      view : 'form'
+    },
+    thanks: {
+      view: 'thanks'
+    } 
+  }
+
+   const [card, toggleCard] = useState(cardInitialValues.form);
+  
+
   //initializing new data as object
   var newData = {};
+
+  const handleClose = () => {
+    toggleCard(cardInitialValues.form)
+
+  }
+
+  const toggleCardButton = () => {
+    toggleCard(cardInitialValues.thanks)
+  }
+
+  
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  function isValidPhone(phone) {
+    return /^\d{10}$/.test(phone);
+  }
+
+  const handleEmailChange = (e) => {
+    if (!isValidEmail(e.target.value)) {
+      setError('Email is invalid');
+    } else {
+      setError(null);
+    }
+
+    setMessage(e.target.value);
+  };
+
+  const handlePhoneChange = (e) => {
+    if (!isValidPhone(e.target.value)) {
+      setPhoneError('Phone is invalid');
+    } else {
+      setPhoneError(null);
+    }
+
+    setPhoneMessage(e.target.value);
+  };
 
   var findDistance = new Promise(function(resolve, reject) {
 
@@ -29,7 +91,8 @@ const StoreNotFoundCard = ({data}) => {
       (Location) => {
           
           //intializing dist as object and first input as key-value pair of storeDistance with empty string
-          const dist = {storeDistance: ''}
+          const dist = {storeDistance: '',Location}
+          
           
           if (data && data.stores){
             for (let i = 0; i < data.stores.length; i++) {
@@ -63,22 +126,31 @@ const StoreNotFoundCard = ({data}) => {
             //updating data.stores with sorted data.stores
             data.stores = byDistance   
             resolve(data)
+            
+            
       }
       }
     );
   })
-  
-  
+
       newData = data
+      
 
       //updating the state of brand data with new data as input
       findDistance.then(function(value){
         setBrandData(newData)
       })
 
+      console.log(brandData)
+
+     
+
+      
+      
+
     // getting all the inputs from the form
     const onInputChange = (e) => {
-        setInput({...input, [e.target.name]: e.target.value})
+        setInput({...input, [e.target.name]: e.target.value, brand: brand.brandName,lat: brandData.stores[0].Location.coords.latitude,long: brandData.stores[0].Location.coords.longitude})
     }
 
     //submitting and sending all the form data on backend and database
@@ -90,18 +162,25 @@ const StoreNotFoundCard = ({data}) => {
   return (
     //rendering store not found card component
     <StyleDivElement>
-      {brandData && brandData.stores ?
-        <div className='card'>
-            <p className='store'>THE NEAREST STORE IS</p>
-            <p className='distance'>{brandData.stores[0].storeDistance}km Away</p>
-            <hr className='hr2'/>
-            <p className='text1'>How Far Will You Go for Love? </p>
-            <p className='text2'>Instead, let us Notify you when we launch near you. </p>
-            <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='fullname' label="Full name" variant="outlined" size="small" />
-            <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='phone' label="Phone number" variant="outlined" size="small" />
-            <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='location' label="Location" variant="outlined" size="small" />
-            <Button onClick={() => {handleClick()}}><img src="../images/discount.svg" alt="icon"/> Get 25% off on Launch </Button>
-        </div>
+      {
+        card.view === 'form' ?
+
+          brandData && brandData.stores ?
+            <div className='card'>
+                <p className='store'>THE NEAREST STORE IS</p>
+                <p className='distance'>{brandData.stores[0].storeDistance}km Away</p>
+                <hr className='hr2'/>
+                <p className='text1'>How Far Will You Go for Love? </p>
+                <p className='text2'>Instead, let us Notify you when we launch near you. </p>
+                <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='fullname' label="Full name" variant="outlined" size="small" />
+                <StyleTextFiled id="outlined-basic" onChange={(e) => { onInputChange(e);handlePhoneChange(e)}} name='phone' label="Phone number" variant="outlined" size="small" />
+                {phoneError && <p style={{color: 'red', margin: 0, padding: 0}}>{phoneError}</p>}
+                <StyleTextFiled id="outlined-basic" onChange={(e) =>{ onInputChange(e);handleEmailChange(e)}} name='email' label="Email" variant="outlined" size="small" />
+                {error && <p style={{color: 'red', margin: 0, padding: 0}}>{error}</p>}
+                <Button onClick={() => {handleClick()}}><img src="../images/discount.svg" alt="icon"/> Get 25% off on Launch </Button>  
+            </div>
+          :
+          ''
         :
         ''
       }

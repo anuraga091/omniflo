@@ -14,7 +14,7 @@ const LoadingScreen = () => {
   const doLoad = () => {
       setTimeout(() => {
         setIcon(<CheckCircleIcon/>)
-        },500)
+        },400)
   }
 
   // useEffect(() => {
@@ -33,6 +33,9 @@ const LoadingScreen = () => {
             <br/> {icon} {text[1]}
             <br/> {icon} {text[2]}
             <br/> {icon} {text[3]}
+            <br/> {icon} {text[4]}
+            <br/> {icon} {text[5]}
+            <br/> {icon} {text[6]}
           </span>
         </div>
       </div>
@@ -80,6 +83,7 @@ const StyleDiv = styled('div')`
     position: relative;
     line-height: 30px;
     margin-bottom: 5px;
+    padding: 10px 0;
     animation: slide 4s infinite;
     
   }
@@ -87,6 +91,7 @@ const StyleDiv = styled('div')`
     text-align: center;
     align-items: center;
     margin-bottom: 5px;
+    padding: 10px 0;
   }
 
 

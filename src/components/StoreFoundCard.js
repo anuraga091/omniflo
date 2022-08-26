@@ -69,16 +69,16 @@ const StoreFoundCard = ({data}) => {
     //rendering store found card component
     <StyleDivElement>
       {brandData && brandData.stores ?
-       brandData.stores.map( (d ) => (
-        <div className='card' key={d._id} >
-            <p className='distance'>{d.storeDistance}km Away</p>
-            <p className='name' >{d.storeName}</p>
-            <p className='location'>Koramangala</p>
-            <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${d.lat},${d.long},z=20?q=${encodeURI(d.storeName)}`}>Take me there</a> </Button>   
+       
+        <div className='card'  >
+            <p className='distance'>{brandData.stores[0].storeDistance}km Away</p>
+            <p className='name' >{brandData.stores[0].storeName}</p>
+            <p className='location'>Bengaluru</p>
+            <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${brandData.stores[0].lat},${brandData.stores[0].long},z=20?q=${encodeURI(brandData.stores[0].storeName)}`}>Take me there</a> </Button>   
         </div>
-      ))
+     
       :
-      ''
+      '' 
     } 
     </StyleDivElement>
   )
