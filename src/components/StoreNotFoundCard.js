@@ -178,7 +178,7 @@ const StoreNotFoundCard = ({data}) => {
           <h4 style={{ margin: 5, padding: '0px 10px'}}>Congratulations!</h4>
           <hr/>
           <p style={{ margin: 10, paddingRight: 10, paddingLeft: 10}}>You’ll be the first one to be notified when we launch in Bangalore</p> 
-          <Button><img src="/images/instagram.svg" alt="instagram"/><p style={{ margin: 0, padding: 0}}>Follow on Instagram</p></Button>
+          <Button><a href="https://www.instagram.com/shoponspotlight/"><img src="/images/instagram.svg" alt="instagram"/>Follow on Instagram</a></Button>
         </div>
       }
     </StyleDivElement>
@@ -212,6 +212,10 @@ const StyleDivElement = styled('div')`
     p{
     text-align: center;
     
+    }
+    a{
+      text-decoration: none;
+      color: #fff;
     }
     h4{
       font-weight: 600;
