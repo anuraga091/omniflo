@@ -46,15 +46,6 @@ const StoreNotFoundCard = ({data}) => {
   //initializing new data as object
   var newData = {};
 
-  const handleClose = () => {
-    toggleCard(cardInitialValues.form)
-
-  }
-
-  const toggleCardButton = () => {
-    toggleCard(cardInitialValues.thanks)
-  }
-
   
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
@@ -157,6 +148,7 @@ const StoreNotFoundCard = ({data}) => {
     const handleClick = async () => {
         let response = await formInput(input)
         console.log(response)
+        toggleCard(cardInitialValues.thanks)
     }
 
   return (
@@ -182,7 +174,12 @@ const StoreNotFoundCard = ({data}) => {
           :
           ''
         :
-        ''
+        <div className='card'>
+          <h4 style={{ margin: 5, padding: '0px 10px'}}>Congratulations!</h4>
+          <hr/>
+          <p style={{ margin: 10, paddingRight: 10, paddingLeft: 10}}>You’ll be the first one to be notified when we launch in Bangalore</p> 
+          <Button><img src="/images/instagram.svg" alt="instagram"/><p style={{ margin: 0, padding: 0}}>Follow on Instagram</p></Button>
+        </div>
       }
     </StyleDivElement>
   )
@@ -215,6 +212,27 @@ const StyleDivElement = styled('div')`
     p{
     text-align: center;
     
+    }
+    h4{
+      font-weight: 600;
+    font-size: 32px;
+    line-height: 36px;
+    /* or 112% */
+
+    text-align: center;
+
+    background: linear-gradient(90deg, #B89FFF 0%, #FF9BC1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    }
+    hr{
+    width: 50%;
+    height: 0px;
+    margin: auto;
+    background: rgba(217, 217, 217, 0.6);
+    opacity: 0.2;
+    border: 1px solid #ADADAD;
     }
     
     .distance{
