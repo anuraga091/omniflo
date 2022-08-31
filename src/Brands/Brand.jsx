@@ -13,10 +13,11 @@ import Footer from '../components/Footer';
 
 
 const Brand = (props) => {
-
+  //Getting brand name from the URL and updating the API URL
   const brand = useParams();
   const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
 
+  //fetching data and consuming in brands page
   useEffect(() => {
     axios.get(`${brandDetailURL}`).then(resp => {
     props.brandName(resp.data)
@@ -24,6 +25,7 @@ const Brand = (props) => {
   },[])// eslint-disable-line react-hooks/exhaustive-deps
   
   return (
+    //Rendering the Brand Page
     <div style={{backgroundColor: '#171717'}}>
         <Header/>
         <StyleDivElement>
@@ -41,13 +43,11 @@ const Brand = (props) => {
 const StyleDivElement = styled('div')`
   
   hr{
-    width: 218px;
+    width: 50%;
     height: 0px;
-    margin: 2px 0 0 25%;
+    margin: auto;
 
-    @media (max-width: 400px){
-      margin: 2px 0 0 20%;
-    }
+    
     background: rgba(217, 217, 217, 0.6);
     opacity: 0.2;
     border: 1px solid #ADADAD;

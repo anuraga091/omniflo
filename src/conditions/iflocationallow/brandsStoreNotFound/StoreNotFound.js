@@ -1,7 +1,10 @@
+//importing dependencies
 import React,{useEffect} from 'react';
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
+//importing components
 import Header from '../../../components/Header';
 import SpotlightXBrand from '../../../components/SpotlightXBrand';
 import StoreNotFoundCard from '../../../components/StoreNotFoundCard';
@@ -15,12 +18,14 @@ const StoreNotFound = (props) => {
   const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
 
   useEffect(() => {
+    //using get request to consume the data from api
     axios.get(`${brandDetailURL}`).then(resp => {
     props.brandName(resp.data)
   })
   },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
+    //rendering brand stores not found page 
     <div style={{backgroundColor: '#171717'}}>
         <Header/>
           <StyleDivElement>
@@ -40,13 +45,9 @@ const StoreNotFound = (props) => {
 
 const StyleDivElement = styled('div')` 
   .hr1{
-    width: 218px;
+    width: 50%;
     height: 0px;
-    margin: 2px 0 0 25%;
-
-    @media (max-width: 400px){
-      margin: 2px 0 0 20%;
-    }
+    margin: auto;
     background: rgba(217, 217, 217, 0.6);
     opacity: 0.2;
     border: 1px solid #ADADAD;

@@ -1,23 +1,186 @@
 import React from 'react'
 import { TextField, Button} from '@mui/material';
 import styled from '@emotion/styled';
-import { distance } from '../Data Constants/Data';
+import * as geolib from 'geolib';
+import { useState } from 'react';
+import { formInput } from '../services/api';
+import { useParams } from 'react-router-dom';
+
+
 
 
 const StoreNotFoundCard = ({data}) => {
+  const brand = useParams();
+  const [setMessage] = useState('');
+  const [error, setError] = useState(null);
+
+  const [setPhoneMessage] = useState('');
+  const [phoneError, setPhoneError] = useState(null);
+  
+  
+  //initializing initial input values as object
+  const inputInitialValues = {
+        fullname : '',
+        phone: '',
+        email : '',
+        brand: '',
+        lat: '',
+        long: ''
+  }
+
+  const [input, setInput] = useState(inputInitialValues);
+  const [brandData, setBrandData] = useState(null);
+
+  const cardInitialValues = {
+    form: {
+      view : 'form'
+    },
+    thanks: {
+      view: 'thanks'
+    } 
+  }
+
+   const [card, toggleCard] = useState(cardInitialValues.form);
+  
+
+  //initializing new data as object
+  var newData = {};
+
+  
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  function isValidPhone(phone) {
+    return /^\d{10}$/.test(phone);
+  }
+
+  const handleEmailChange = (e) => {
+    if (!isValidEmail(e.target.value)) {
+      setError('Email is invalid');
+    } else {
+      setError(null);
+    }
+
+    setMessage(e.target.value);
+  };
+
+  const handlePhoneChange = (e) => {
+    if (!isValidPhone(e.target.value)) {
+      setPhoneError('Phone is invalid');
+    } else {
+      setPhoneError(null);
+    }
+
+    setPhoneMessage(e.target.value);
+  };
+
+  var findDistance = new Promise(function(resolve, reject) {
+
+    //getting geoLocation of the user from navigator
+    navigator.geolocation.getCurrentPosition(
+      (Location) => {
+          
+          //intializing dist as object and first input as key-value pair of storeDistance with empty string
+          const dist = {storeDistance: '',Location}
+          
+          
+          if (data && data.stores){
+            for (let i = 0; i < data.stores.length; i++) {
+              
+              const element = data.stores[i];
+  
+              //calculating distance using lat and long
+              const locationDistance =geolib.getPreciseDistance({
+                latitude: Location.coords.latitude,
+                longitude: Location.coords.longitude
+              }, {
+                  latitude: element.lat,
+                  longitude: element.long,
+              })
+              const distance = Math.round(locationDistance/1000)
+  
+              //updating in dist object
+              dist.storeDistance = distance
+  
+              //adding distance into data.stores
+              Object.assign(element, dist)
+              
+            }
+  
+            //sorting with distance
+            var byDistance = data.stores.slice(0);
+            byDistance.sort(function(a,b) {
+              return a.storeDistance - b.storeDistance;
+            });
+  
+            //updating data.stores with sorted data.stores
+            data.stores = byDistance   
+            resolve(data)
+            
+            
+      }
+      }
+    );
+  })
+
+      newData = data
+      
+
+      //updating the state of brand data with new data as input
+      findDistance.then(function(value){
+        setBrandData(newData)
+      })
+
+      console.log(brandData)
+
+     
+
+      
+      
+
+    // getting all the inputs from the form
+    const onInputChange = (e) => {
+        setInput({...input, [e.target.name]: e.target.value, brand: brand.brandName,lat: brandData.stores[0].Location.coords.latitude,long: brandData.stores[0].Location.coords.longitude})
+    }
+
+    //submitting and sending all the form data on backend and database
+    const handleClick = async () => {
+        let response = await formInput(input)
+        console.log(response)
+        toggleCard(cardInitialValues.thanks)
+    }
+
   return (
+    //rendering store not found card component
     <StyleDivElement>
+      {
+        card.view === 'form' ?
+
+          brandData && brandData.stores ?
+            <div className='card'>
+                <p className='store'>THE NEAREST STORE IS</p>
+                <p className='distance'>{brandData.stores[0].storeDistance}km Away</p>
+                <hr className='hr2'/>
+                <p className='text1'>How Far Will You Go for Love? </p>
+                <p className='text2'>Instead, let us Notify you when we launch near you. </p>
+                <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='fullname' label="Full name" variant="outlined" size="small" />
+                <StyleTextFiled id="outlined-basic" onChange={(e) => { onInputChange(e);handlePhoneChange(e)}} name='phone' label="Phone number" variant="outlined" size="small" />
+                {phoneError && <p style={{color: 'red', margin: 0, padding: 0}}>{phoneError}</p>}
+                <StyleTextFiled id="outlined-basic" onChange={(e) =>{ onInputChange(e);handleEmailChange(e)}} name='email' label="Email" variant="outlined" size="small" />
+                {error && <p style={{color: 'red', margin: 0, padding: 0}}>{error}</p>}
+                <Button onClick={() => {handleClick()}}><img src="../images/discount.svg" alt="icon"/> Get 25% off on Launch </Button>  
+            </div>
+          :
+          ''
+        :
         <div className='card'>
-            <p className='store'>THE NEAREST STORE IS</p>
-            <p className='distance'>{distance}km Away</p>
-            <hr className='hr2'/>
-            <p className='text1'>How Far Will You Go for Love? </p>
-            <p className='text2'>Instead, let us Notify you when we launch near you. </p>
-            <StyleTextFiled id="outlined-basic" label="Full name" variant="outlined" size="small" />
-            <StyleTextFiled id="outlined-basic" label="Phone number" variant="outlined" size="small" />
-            <StyleTextFiled id="outlined-basic" label="Location" variant="outlined" size="small" />
-            <Button><img src="../images/discount.svg" alt="icon"/> Get 25% off on Launch </Button>
+          <h4 style={{ margin: 5, padding: '0px 10px'}}>Congratulations!</h4>
+          <hr/>
+          <p style={{ margin: 10, paddingRight: 10, paddingLeft: 10}}>You’ll be the first one to be notified when we launch in Bangalore</p> 
+          <Button><a href="https://www.instagram.com/shoponspotlight/"><img src="/images/instagram.svg" alt="instagram"/>Follow on Instagram</a></Button>
         </div>
+      }
     </StyleDivElement>
   )
 }
@@ -49,6 +212,31 @@ const StyleDivElement = styled('div')`
     p{
     text-align: center;
     
+    }
+    a{
+      text-decoration: none;
+      color: #fff;
+    }
+    h4{
+      font-weight: 600;
+    font-size: 32px;
+    line-height: 36px;
+    /* or 112% */
+
+    text-align: center;
+
+    background: linear-gradient(90deg, #B89FFF 0%, #FF9BC1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    }
+    hr{
+    width: 50%;
+    height: 0px;
+    margin: auto;
+    background: rgba(217, 217, 217, 0.6);
+    opacity: 0.2;
+    border: 1px solid #ADADAD;
     }
     
     .distance{

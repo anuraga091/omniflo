@@ -6,14 +6,14 @@ import * as geolib from 'geolib';
 const ButtonCard = ({data}) => {
 
     const navigate = useNavigate();
+
     const [Location, setLocation] = useState({
         loaded: false,
         coordinates: {lat : '', lng: ''}
     });
 
-  useEffect(() => {
-        
-
+    useEffect(() => {
+        //If we do not get geolocation in navigator
         if(!("geolocation" in navigator)){
             onError({
                 code: 0,
@@ -24,6 +24,7 @@ const ButtonCard = ({data}) => {
     },[Location])// eslint-disable-line react-hooks/exhaustive-deps
 
     const onSuccess = Location => {
+      // if we get geolocation in navigator
         setLocation({
             loaded: true,
             coordinates: {
@@ -31,54 +32,56 @@ const ButtonCard = ({data}) => {
                 lng: Location.coords.longitude
             }
         })
+
+        //initializing store distance in a empty list
         const storeDistance = []
         if (data && data.stores){
+          // for all the stores present in json
           for (let i = 0; i < data.stores.length; i++) {
             
             const element = data.stores[i];
             
-            const locationDistance =geolib.getDistance({
+            //calculating distance of stores from your location 
+            const locationDistance =geolib.getPreciseDistance({
               latitude: Location.coords.latitude,
               longitude: Location.coords.longitude
             }, {
                 latitude: element.lat,
                 longitude: element.long,
             })
+
+            //updating all the store distance in the list and converting it in km
             storeDistance.push(Math.round(locationDistance/1000))
-            
-            
-          }
-          
-          
+          }      
     }
-       
+      // redirecting to Stores page if nearest store is 50km from user location  
         if(Math.min(...storeDistance) <= 50){
             navigate("Stores")
         }
+      // redirecting to Stores not found page if nearest store is more than 50km from user location
         else{
           navigate("Store Not Found")
-        }
-        
-        
+        }   
     }
-
+    // if user denies permission to access their location
     const onError = (error) => {
          setLocation({
             loaded: true,
             error,
         })
       console.log(error)
+      //if user denies permission to access their location redirect to Location denied page
       navigate("Location denied")
       
     }
-
+  
+  // asking for location of a user and it's condition 
   const ShowLocationPopUp = () => {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    
-    
+    navigator.geolocation.getCurrentPosition(onSuccess, onError); 
   }
 
   return (
+    //rendering button card component
     <StyleDiv>
       <div className='card'>
           <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
@@ -149,9 +152,7 @@ const StyleDiv = styled('div')`
    100%{
      background-position: 0% 50%
      }
-}
- 
-  
+} 
 `;
 
 export default ButtonCard

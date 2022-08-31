@@ -3,43 +3,39 @@ import { styled } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 const Usp = ({data}) => {
+  //getting brand name from the URL
   const brand = useParams();
+  
   return (
+    //rendering usp component
     <StyleDivElement>
         
         <div className="story">
             <div className='heading'>
             <img className='image1' src={data.brandLogo} alt={data.alt}/>
-            <div>
+            <div style={{marginTop: 5, marginLeft: 5}}>
                 <h4>STORY OF</h4> 
                 <p>{brand.brandName}</p>
             </div>
             </div>
 
             <div className='body'>
-            <img className='image2' src={data.uspLogo} alt="Virat Kohli"/>
-            <p>{data.story}</p>
+            <img className='image2' src={data.descriptionImage} alt="description" type="text/html"/>
+            <p>{decodeURIComponent(data.story)}</p>
             </div>
-            <div className="logos">
-                
-                  {
-                    data && data.icons ?
-                    <div className="icon">
-                      <img className='logo' src={data.icons[0]} alt=""/>
-                      <img className='logo' src={data.icons[1]} alt=""/>
-                      <img  className='logo' src={data.icons[2]} alt=""/>
-                    </div>
-                    :
-                    ''
-                  }
-                
-                
-                <div className="icon-text">
-                <p className='logo-text'>No Gut Health</p>
-                <p className='logo-text'>No Bitterness</p>
-                <p className='logo-text'>Rich Aroma</p>
-                </div> 
-            </div>
+             {
+              data && data.icons ?
+              <div className="logos"> 
+              {data.icons.map((icon , index) => (
+                <div className="icon" key={index}>
+                    <img className='logo' src={icon.url} alt=""/>
+                    <p className='logo-text'>{icon.name}</p>
+                </div>
+              ))}     
+              </div>
+             :
+            ''
+            }
         </div>
     
     </StyleDivElement>
@@ -61,9 +57,9 @@ const StyleDivElement = styled('div')`
       color: rgba(255, 255, 255, 0.6);
       padding: 10px 20px;
       .image1{
-        width: 50px;
-        height: 50px;
-        border-radius: 2px;
+        width: 100px;
+        height: 100%;
+        border-radius: 0;
         margin-right: 10px;
        
       }
@@ -77,26 +73,32 @@ const StyleDivElement = styled('div')`
         text-transform: uppercase;
         margin-bottom: 0;
         letter-spacing: 19%;
+        
       }
     }
     
     .body{
-      display: flex;
-      justify-content: space-evenly;
-      margin-top: 20px;
+      
+      margin: 20px;
+      
       .image2{
-        width: 150px;
-        height: 150px;
+        width: 100%;
+        height: 200px;
         border-radius: 0;
-        margin: 10px ;
+        margin-bottom: 10px;
       }
       p{
         font-size: 14px;
         color: rgba(255, 255, 255, 0.6);
         margin-right: 5px;
+        text-align: justify;
       }
     }
     .logos{
+      display: flex;
+      text-align: center;
+      justify-content: space-evenly;
+      align-items: center;
       box-sizing: border-box;
       border: 1px solid #ADADAD;
       border-radius: 8px;
@@ -104,20 +106,19 @@ const StyleDivElement = styled('div')`
       padding: 20px 10px;
     }
     .icon{
-      display: flex;
-      text-align: center;
-      justify-content: space-around;
-      
+      max-width: 100px;
     }
+    
     .logo{
       width: 30px;
-      height: 26px;
-      margin: 0px 20px;
+      height: 30px;
+      
       
     }
     .icon-text{
       display: flex;
       align-items: center;
+      text-align: center;
       justify-content: space-around;
     }
     .logo-text{

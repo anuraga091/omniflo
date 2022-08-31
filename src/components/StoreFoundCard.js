@@ -1,69 +1,88 @@
 import React,{useState} from 'react';
 import { styled, Button } from '@mui/material';
 import * as geolib from 'geolib';
-import { useEffect } from 'react';
-
-
-
 const StoreFoundCard = ({data}) => {
-  const [brandData, setBrandData] = useState(null)
-  navigator.geolocation.getCurrentPosition(
-    (Location) => {
-        
-        const dist = {storeDistance: ''}
-        
-        if (data && data.stores){
-          for (let i = 0; i < data.stores.length; i++) {
-            
-            const element = data.stores[i];
-            const locationDistance =geolib.getDistance({
-              latitude: Location.coords.latitude,
-              longitude: Location.coords.longitude
-            }, {
-                latitude: element.lat,
-                longitude: element.long,
-            })
-            const distance = Math.round(locationDistance/1000)
-            dist.storeDistance = distance
-            Object.assign(element, dist)
-            
-          }
-          var byDistance = data.stores.slice(0);
-          byDistance.sort(function(a,b) {
-            return a.storeDistance - b.storeDistance;
-          });
-          data.stores = byDistance
-          
-          
-    }
-    }
-  );
 
-  useEffect(() => {
-      setBrandData(data)
-      
-  },[])// eslint-disable-line react-hooks/exhaustive-deps
-  console.log(brandData)
+  const [brandData, setBrandData] = useState(null);
+
+  //initializing new data as object 
+  var newData = {};
+
+  //initializing findDistance function
+  var findDistance = new Promise(function(resolve, reject) {
+
+    //getting geoLocation of the user from navigator
+    navigator.geolocation.getCurrentPosition(
+      (Location) => {
+          
+        //intializing dist as object and first input as key-value pair of storeDistance with empty string
+          const dist = {storeDistance: ''}
+          
+          if (data && data.stores){
+
+            //for all the stores in json of data
+            for (let i = 0; i < data.stores.length; i++) {
+              
+              const element = data.stores[i];
+  
+              //calculating distance using lat and long
+              const locationDistance =geolib.getPreciseDistance({
+                latitude: Location.coords.latitude,
+                longitude: Location.coords.longitude,
+              }, {
+                  latitude: element.lat,
+                  longitude: element.long,
+              })
+              const distance = Math.round(locationDistance/1000)
+  
+              //updating in dist object
+              dist.storeDistance = distance
+  
+              //adding distance into data.stores
+              Object.assign(element, dist)
+              
+            }
+  
+            //sorting with distance
+            var byDistance = data.stores.slice(0);
+            byDistance.sort(function(a,b) {
+              return a.storeDistance - b.storeDistance;
+            });
+  
+            //updating data.stores with sorted data.stores
+            data.stores = byDistance   
+
+            resolve(data)
+      }
+      }
+    );
+  })
+  
+      //assigning value of new data = data
+      newData = data
+      findDistance.then(function(value){
+        //updating the state of brand data with new data as input
+        setBrandData(newData)
+      })
 
   return (
+    //rendering store found card component
     <StyleDivElement>
       {brandData && brandData.stores ?
-       brandData.stores.map( (d , index) => (
-        <div className='card' key={index} >
-            <p className='distance'>{d.storeDistance}km Away</p>
-            <p className='name' >{d.storeName}</p>
-            <p className='location'>Koramangala</p>
-            <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${d.lat},${d.long};`}>Take me there</a> </Button>
+       
+        <div className='card'  >
+            <p className='distance'>{brandData.stores[0].storeDistance}km Away</p>
+            <p className='name' >{brandData.stores[0].storeName}</p>
+            <p className='location'>Bengaluru</p>
+            <Button><img src="../images/location.svg" alt="icon"/> <a href={`geo:${brandData.stores[0].lat},${brandData.stores[0].long},z=20?q=${encodeURI(brandData.stores[0].storeName)}`}>Take me there</a> </Button>   
         </div>
-      ))
+     
       :
-      ''
-    }
-        
+      '' 
+    } 
     </StyleDivElement>
   )
 }
-
 const StyleDivElement = styled('div')`
 .card{
     margin:  20px;
@@ -75,7 +94,6 @@ const StyleDivElement = styled('div')`
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.2);
     
-
     .distance{
         margin: 0;
         padding: 20px 0;
@@ -101,7 +119,6 @@ const StyleDivElement = styled('div')`
         font-size: 14px;
         line-height: 24px;
         text-align: center;
-
     }
     button{
       background: linear-gradient(-45deg, #FFA63D, #3F0BDB, #FF0C67,#338AFF);
@@ -110,13 +127,11 @@ const StyleDivElement = styled('div')`
       margin: 10px 20px 20px 20px;
       
       animation: anime 16s linear infinite;
-
       img{
         width: 24px;
         height: 24px;
         margin-right: 5px;
     }
-
     a{
       text-decoration: none;
       font-weight: 600;
@@ -129,7 +144,6 @@ const StyleDivElement = styled('div')`
       text-transform: uppercase;
     }
   }
-
     @keyframes anime {
         0%{
         background-position: 0% 50%
