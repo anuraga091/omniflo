@@ -29,13 +29,14 @@ const BrandStores = (props) => {
     }).then(resp => {
       
       props.brandName(resp.data)
+      console.log('stores data is : '+ props.data);
     })
     
     // showing loader component for 5 secs
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    },4000)
+    },5000)
   },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -53,7 +54,7 @@ const BrandStores = (props) => {
                 : 
                 //after 5 secs show store not found card component
                   <StoreFoundCard data={props.data}/>
-              }
+              }         
               <Usp data={props.data}/>
               <Footer/>
             </StyleDivElement> 
@@ -73,6 +74,12 @@ const StyleDivElement = styled('div')`
     opacity: 0.2;
     border: 1px solid #ADADAD;
   }
+  ${'' /* .newDiv-loadContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+  } */}
 `;
 
 export default BrandStores;

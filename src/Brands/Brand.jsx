@@ -21,6 +21,7 @@ const Brand = (props) => {
   useEffect(() => {
     axios.get(`${brandDetailURL}`).then(resp => {
     props.brandName(resp.data)
+    console.log(resp.data)
   })
   },[])// eslint-disable-line react-hooks/exhaustive-deps
   
@@ -41,6 +42,8 @@ const Brand = (props) => {
 };
 
 const StyleDivElement = styled('div')`
+
+  margin-top: 0;
   
   hr{
     width: 50%;

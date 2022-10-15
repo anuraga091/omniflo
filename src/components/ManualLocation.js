@@ -1,13 +1,15 @@
 import React,{useState} from 'react';
 import { styled, Button } from '@mui/material';
 import * as geolib from 'geolib';
-const StoreFoundCard = ({data}) => {
+const StoreFoundCard = ({ data, Lat, Long } ) => {
 
   const [brandData, setBrandData] = useState(null);
 
   //N-> declaring variables to get curr lat and curr long
-  let currLat;
-  let currLong;
+  let currLat = Lat;
+  let currLong= Long;
+  console.log('lat in manual location is : ',currLat)
+  console.log('long in manual location is : ',currLong)
   
   //initializing new data as object 
   var newData = {};
@@ -18,16 +20,16 @@ const StoreFoundCard = ({data}) => {
   //initializing findDistance function
   var findDistance = new Promise(function(resolve, reject) {
 
-    //getting geoLocation of the user from navigator
-    navigator.geolocation.getCurrentPosition(
-      (Location) => {
-        currLat = Location.coords.latitude;
-        currLong = Location.coords.longitude;
+    //Manual Location 
+
+
+        // currLat = Location.coords.latitude;
+        // currLong = Location.coords.longitude;
           
         //intializing dist as object and first input as key-value pair of storeDistance with empty string
-          const dist = {storeDistance: ''}
-          
-          if (data && data.stores){
+        const dist = {storeDistance: ''}
+          console.log(data);
+        if (data && data.stores){
 
             //for all the stores in json of data
             for (let i = 0; i < data.stores.length; i++) {
@@ -35,13 +37,13 @@ const StoreFoundCard = ({data}) => {
               const element = data.stores[i];
   
               //calculating distance using lat and long
-              const locationDistance =geolib.getPreciseDistance({
-                latitude: Location.coords.latitude,
-                longitude: Location.coords.longitude,
+              const locationDistance = geolib.getPreciseDistance({
+                latitude: currLat,
+                longitude: currLong,
               }, {
                   latitude: element.lat,
                   longitude: element.long,
-              })
+                })
               const distance = Math.round(locationDistance/1000)
   
               //updating in dist object
@@ -63,25 +65,27 @@ const StoreFoundCard = ({data}) => {
             // console.log(data.stores)
 
             resolve(data)
-      }
-      }
-    );
-  })
-      // console.log(brandData.stores)
-      // console.log(data.stores)
-      //assigning value of new data = data
-      newData = data
-      findDistance.then(function(value){
-        //updating the state of brand data with new data as input
-        setBrandData(newData)
-      })
+        }
+    
+    })
+        // console.log(brandData.stores)
+        // console.log(data.stores)
+        //assigning value of new data = data
+        newData = data
+        console.log('data is : '+ data); //its not receiving any data 
+        findDistance.then(function(value){
+            // newData = data
+            //updating the state of brand data with new data as input
+            setBrandData(newData)
+            // console.log(newData);
+        })
 
 
 
 
-      function openGoogleByMethod(){
+    function openGoogleByMethod(){
         window.open(`https://www.google.com/maps/dir/${currLat},${currLong}/${brandData.stores[0].lat},${brandData.stores[0].long}`)
-      }
+    }
   return (
     //rendering store found card component
     <StyleDivElement>

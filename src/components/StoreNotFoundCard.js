@@ -40,7 +40,7 @@ const StoreNotFoundCard = ({data}) => {
     } 
   }
 
-   const [card, toggleCard] = useState(cardInitialValues.form);
+  const [card, toggleCard] = useState(cardInitialValues.form);
   
 
   //initializing new data as object
@@ -78,7 +78,7 @@ const StoreNotFoundCard = ({data}) => {
   var findDistance = new Promise(function(resolve, reject) {
 
     //getting geoLocation of the user from navigator
-    navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.getCurrentPosition(
       (Location) => {
           
           //intializing dist as object and first input as key-value pair of storeDistance with empty string
@@ -132,11 +132,15 @@ const StoreNotFoundCard = ({data}) => {
         setBrandData(newData)
       })
 
-      console.log(brandData)
+      // console.log(brandData)
 
-     
+      // const myStyle = {
+      //   label:focus-within{
+      //     margin = '10px'
+      //   }
+      // } style={myStyle}
 
-      
+
       
 
     // getting all the inputs from the form
@@ -164,13 +168,13 @@ const StoreNotFoundCard = ({data}) => {
                 <hr className='hr2'/>
                 <p className='text1'>How Far Will You Go for Love? </p>
                 <p className='text2'>Instead, let us Notify you when we launch near you. </p>
-                <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='fullname' label="Full name" variant="outlined" size="small" />
-                <StyleTextFiled id="outlined-basic" onChange={(e) => { onInputChange(e);handlePhoneChange(e)}} name='phone' label="Phone number" variant="outlined" size="small" />
+                <StyleTextFiled id="outlined-basic" onChange={(e) => onInputChange(e)} name='fullname' placeholder="Full Name" /*label="Full name"*/ variant="outlined" size="small" />
+                <StyleTextFiled id="outlined-basic" onChange={(e) => { onInputChange(e);handlePhoneChange(e)}} name='phone' placeholder='Phone number' /*label="Phone number"*/ variant="outlined" size="small" />
                 {phoneError && <p style={{color: 'red', margin: 0, padding: 0}}>{phoneError}</p>}
-                <StyleTextFiled id="outlined-basic" onChange={(e) =>{ onInputChange(e);handleEmailChange(e)}} name='email' label="Email" variant="outlined" size="small" />
+                <StyleTextFiled id="outlined-basic" onChange={(e) =>{ onInputChange(e);handleEmailChange(e)}} name='email' placeholder='Email' /*label="Email"*/ variant="outlined" size="small" />
                 {error && <p style={{color: 'red', margin: 0, padding: 0}}>{error}</p>}
-                <Button onClick={() => {handleClick()}}><img src="../images/discount.svg" alt="icon"/> Get 25% off on Launch </Button>  
-            </div>
+                <Button className='Button-discount' onClick={() => {handleClick()}}><img src="../images/discount.svg" alt="icon"/> Get 25% off on Launch </Button>  
+            </div> 
           :
           ''
         :
@@ -178,7 +182,8 @@ const StoreNotFoundCard = ({data}) => {
           <h4 style={{ margin: 5, padding: '0px 10px'}}>Congratulations!</h4>
           <hr/>
           <p style={{ margin: 10, paddingRight: 10, paddingLeft: 10}}>You’ll be the first one to be notified when we launch in Bangalore</p> 
-          <Button><a href="https://www.instagram.com/shoponspotlight/"><img src="/images/instagram.svg" alt="instagram"/>Follow on Instagram</a></Button>
+          <Button className='Button-insta'><a href="https://www.instagram.com/shoponspotlight/"><img src="/images/instagram.svg" alt="instagram"/>&nbsp;
+          Follow on Instagram</a></Button>
         </div>
       }
     </StyleDivElement>
@@ -186,7 +191,8 @@ const StoreNotFoundCard = ({data}) => {
 }
 
 const StyleTextFiled = styled(TextField)`
-    border-radius: 5px;
+    border-radius: 12px;
+    width: 75%;
     margin: 10px 20px 20px 20px;
     font-weight: 600;
     font-size: 16px;
@@ -194,19 +200,40 @@ const StyleTextFiled = styled(TextField)`
     color: #fff;
     font-family: 'Poppins', sans-serif;
     background-color: #fff;
-    
+    ${'' /* input:focus label{
+      margin: -10px;
+    }  */}
+    ${'' /* label{
+      margin: -10px;
+    } */}
 `;
 
 const StyleDivElement = styled('div')`
     .card{
+    ${'' /* width: 90%; */}
     margin:  20px;
-    padding: 20px 0;
-    box-sizing: border-box;
+    ${'' /* margin: auto; */}
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ${'' /* box-sizing: border-box; */}
     background: linear-gradient(180deg, rgba(58, 58, 58, 0.7) 5.22%, rgba(72, 72, 72, 0.4) 94.94%);
     backdrop-filter: blur(12px);
     border-radius: 5px;
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.2);
+
+    .Button-discount{
+      width: 75%;
+      border-radius: 10px;
+    }
+
+    .Button-insta{
+      width: 80%;
+      border-radius: 10px;
+      font-size: 20px;
+    }
     
 
     p{
@@ -300,6 +327,7 @@ const StyleDivElement = styled('div')`
         margin-right: 5px;
       }
     }
+    
   }
 
   @keyframes anime {

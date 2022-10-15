@@ -11,6 +11,7 @@ const Header = () => {
 
 const StylePElement = styled('p')`
   padding: 10px 20px;
+  margin-top: 0;
   
   line-height: 24px;
   background-color: black;

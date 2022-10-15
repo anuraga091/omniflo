@@ -85,7 +85,7 @@ const ButtonCard = ({data}) => {
     <StyleDiv>
       <div className='card'>
           <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-          <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.svg" alt="icon"/>  Find a Store Near Me </Button>
+          <Button onClick={ShowLocationPopUp}><img src="./images/map_pin.svg" alt="icon"/>  &nbsp; Find a Store Near Me </Button>
           <p className='ask'>We ask for location permission to locate stores near you. Click “Allow” once you see a popup.</p>
       </div>
     </StyleDiv>
@@ -105,39 +105,49 @@ const StyleDiv = styled('div')`
     p{
       text-align: center;
       margin: 10px 0px 5px 0px;
+      font-size: 1.2rem;
       i{
         font-weight: 700;
         color: #F38137;
+        font-size: 1.1rem;
       }
     }
 
     .ask{
       font-weight: 400;
-      font-size: 11px;
+      font-size: 0.75rem;
       text-align: center;
       color: #ADADAD;
       margin:  10px 30px;
     }
 
     button{ 
-      background: linear-gradient(-45deg, #FFA63D, #3F0BDB, #FF0C67,#338AFF);
+      ${''/*first*/ /* background: linear-gradient(-45deg, #6713d2, #FF0C67, #338AFF, #6713d2);  */}
+       background: linear-gradient(-45deg, /*#FCB69F,*/#c90076,#662D8C,/*#ED1E79,*/#FCB69F,#c90076,#ED1E79/*,#FCB69F*/);  
+      /* ,white=#FCB69F, #3F0BDB, #FF0C67,#338AFF ,#FFA63D, new -> #6713d2, #00dbde, #9600FF, #F6EA41*/
       background-size: 600%;
-      border-radius: 20px;
-      margin: 10px 20px 20px 20px;
+      left: 4.3%;
+      width: 80%;
+      border-radius: 10px;
+      ${'' /* margin: 10px 20px 10px 20px; */}
+      margin: 10px 20px;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 19px;
       text-transform: none;
       color: #fff;
       font-family: 'Poppins', sans-serif; 
       text-decoration: none;
       padding: 10px 0;
       position: relative;
-      animation: anime 16s linear infinite;
+      animation: anime 9s linear infinite;
       img{
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
         margin-right: 5px;
       }
+    }
+    button:hover{
+      transform: translateY(-5px);
     }
   }
 

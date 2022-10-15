@@ -29,7 +29,7 @@ const SpotlightXBrand = ({data}) => {
 }
 
 const StyleDivElement = styled('div')`
-  
+
   .img{
       display: flex;
       flex-direction: row;
@@ -52,9 +52,17 @@ const StyleDivElement = styled('div')`
   }
   h6{
     text-align: center;
-    font-size: 18px;
-    line-height: 24px;
-    margin: 10px;
+    font-size: 1.2rem;
+    ${'' /* font-size: 12px; */}
+    ${'' /* line-height: 24px; */}
+    line-height: 1.5rem;
+    margin: 8px;
+    margin-top: 35px;
+    span{
+      color: #ADADAD;;
+      opacity: 0.7;
+      font-weight: 500;
+    }
   }
 `;
 export default SpotlightXBrand
