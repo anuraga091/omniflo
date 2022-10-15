@@ -54,6 +54,7 @@ const LocationDenyPage = (props) => {
   // console.log(Lat)
   // console.log(Long)
   let CoordsFunction = (Coords) => {
+    console.log('Coords are : ',Coords);
     // const NewCollectiveProps = {...Coords}
     // CollectiveProps to send data as props to ManualLocation
     setCollectiveProps(
@@ -61,7 +62,8 @@ const LocationDenyPage = (props) => {
         ...Coords,
         data: props.data
       }
-    )   
+      )   
+      console.log('collective props are : ',collectiveProps);
     // setCoordsInfo(true)
     // console.log('page lat and long are : '+ Lat + Long);
     console.log('coords fn executed');
