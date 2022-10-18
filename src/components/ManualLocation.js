@@ -1,15 +1,27 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { styled, Button } from '@mui/material';
 import * as geolib from 'geolib';
-const StoreFoundCard = ({ data, Lat, Long } ) => {
+import axios from 'axios';
+const ManualLocation = ({location , data} ) => {
+  let currLat
+  let currLong
+  console.log(location);
 
   const [brandData, setBrandData] = useState(null);
 
   //N-> declaring variables to get curr lat and curr long
-  let currLat = Lat;
-  let currLong= Long;
-  console.log('lat in manual location is : ',currLat)
-  console.log('long in manual location is : ',currLong)
+  // useEffect( function ButtonFunc(){
+  //   axios.get(`https://api.geoapify.com/v1/geocode/search?text=${location}&format=json&apiKey=10ff75a41458452486c224643ce04ee3`).then(res => {
+
+    
+  //   currLat = res.data.results[0].lat;
+  //   currLong= res.data.results[0].lon;
+  //   console.log('lat in manual location is : ',currLat)
+  //   console.log('long in manual location is : ',currLong)
+  //   })
+  //   },[]
+  // )
+ 
   
   //initializing new data as object 
   var newData = {};
@@ -19,23 +31,31 @@ const StoreFoundCard = ({ data, Lat, Long } ) => {
   
   //initializing findDistance function
   var findDistance = new Promise(function(resolve, reject) {
+        axios.get(`https://api.geoapify.com/v1/geocode/search?text=${location}&format=json&apiKey=10ff75a41458452486c224643ce04ee3`).then(res => {
 
-    //Manual Location 
+        console.log('location is : ', location)
+        currLat = res.data.results[0].lat;
+        currLong= res.data.results[0].lon;
+        console.log('lat in manual location is : ',currLat, 'type of data is : ',typeof currLat)
+        console.log('long in manual location is : ',currLong)
+        // })
+    
 
+        //Manual Location 
 
-        // currLat = Location.coords.latitude;
-        // currLong = Location.coords.longitude;
-          
         //intializing dist as object and first input as key-value pair of storeDistance with empty string
         const dist = {storeDistance: ''}
-          console.log(data);
+          // console.log(data);
         if (data && data.stores){
+          console.log('entered if statement, ie data and data.stores available')
 
             //for all the stores in json of data
             for (let i = 0; i < data.stores.length; i++) {
+              // console.log(`entered ${i}th store`)
               
               const element = data.stores[i];
-  
+              // console.log(element)
+              // console.log(currLat);
               //calculating distance using lat and long
               const locationDistance = geolib.getPreciseDistance({
                 latitude: currLat,
@@ -45,6 +65,7 @@ const StoreFoundCard = ({ data, Lat, Long } ) => {
                   longitude: element.long,
                 })
               const distance = Math.round(locationDistance/1000)
+              // console.log('distance is : ',distance)
   
               //updating in dist object
               dist.storeDistance = distance
@@ -53,7 +74,8 @@ const StoreFoundCard = ({ data, Lat, Long } ) => {
               Object.assign(element, dist)
               
             }
-  
+
+          
             //sorting with distance
             var byDistance = data.stores.slice(0);
             byDistance.sort(function(a,b) {
@@ -62,21 +84,25 @@ const StoreFoundCard = ({ data, Lat, Long } ) => {
 
             //updating data.stores with sorted data.stores
             data.stores = byDistance   
-            // console.log(data.stores)
 
             resolve(data)
+            // console.log('data is : ', data)
+            // console.log('1')
+         
         }
     
-    })
+    }) 
+  })
         // console.log(brandData.stores)
         // console.log(data.stores)
         //assigning value of new data = data
-        newData = data
-        console.log('data is : '+ data); //its not receiving any data 
+        // newData = data
+        // console.log('data is : '+ data); //its not receiving any data 
         findDistance.then(function(value){
-            // newData = data
+            newData = data
             //updating the state of brand data with new data as input
             setBrandData(newData)
+            console.log('2')
             // console.log(newData);
         })
 
@@ -100,8 +126,16 @@ const StoreFoundCard = ({ data, Lat, Long } ) => {
         </div>
      
       :
-      '' 
+        <div className='card'>
+          <p>Just a second</p>
+        </div>
     } 
+    {/* <div className='card'  >
+            <p className='distance'>{brandData.stores[0].storeDistance}km Away</p>
+            <p className='name' >{brandData.stores[0].storeName}</p>
+            <p className='location'>Bengaluru</p>
+            <Button onClick={openGoogleByMethod}> <img src="../images/location.svg" alt="icon"/> <span>Take me there</span> </Button>
+    </div> */}
     </StyleDivElement>
   )
 }
@@ -183,4 +217,4 @@ const StyleDivElement = styled('div')`
     }
 }
 `;
-export default StoreFoundCard
+export default ManualLocation;

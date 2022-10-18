@@ -16,6 +16,7 @@ import Footer from '../../../components/Footer';
 
 const BrandStores = (props) => {
   const [loading, setLoading] = useState(false);
+  // console.log('props in stores is : ',props)
 
   const brand = useParams();
   const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
@@ -37,6 +38,7 @@ const BrandStores = (props) => {
     setTimeout(() => {
       setLoading(false)
     },5000)
+    console.log('rendered useEffect')
   },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (

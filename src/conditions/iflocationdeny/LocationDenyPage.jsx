@@ -10,16 +10,12 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const LocationDenyPage = (props) => {
-
+  // console.log('props in location deny page is : ',props)
   const brand = useParams();
-  const [coordsInfo, setCoordsInfo] = useState(true);
-
-  //collectiveProps to send props.data, Lat and Long to ManualLocation as an object
-  let [collectiveProps, setCollectiveProps] = useState({
-      Lat : '',
-      Long : '',    
-      data : ''
-  })
+  // let location;
+  // const [sign, setSign] = useState(false)
+  const [newLocation, setnewLocation] = useState('')
+  // let sign = false;
 
   const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
   
@@ -38,38 +34,16 @@ const LocationDenyPage = (props) => {
      
     })
   },[])// eslint-disable-line react-hooks/exhaustive-deps
-  //giving the values of lat and long to lat and long
-  //
-  // let CoordsFunction = (Coords) => {
-  //   setCollectiveProps(
-  //     {        
-  //       Lat : Coords[0],
-  //       Long : Coords[1],
-  //       data : props.data
-  //     }
-  //   )   
-  //   // console.log('page lat and long are : '+ Lat + Long);
-  // }
-  // setTimeout(CoordsFunction(),1000);
-  // console.log(Lat)
-  // console.log(Long)
-  let CoordsFunction = (Coords) => {
-    console.log('Coords are : ',Coords);
-    // const NewCollectiveProps = {...Coords}
-    // CollectiveProps to send data as props to ManualLocation
-    setCollectiveProps(
-      {   
-        ...Coords,
-        data: props.data
-      }
-      )   
-      console.log('collective props are : ',collectiveProps);
-    // setCoordsInfo(true)
-    // console.log('page lat and long are : '+ Lat + Long);
-    console.log('coords fn executed');
+ 
+  const getPlace = (place) => {
+    console.log('place received in Deny Page is : ',place);
+    // location = place; //Manual Location received
+    setnewLocation(place);
+    // console.log('entered getplace for location')
+    // setSign(true)
+    console.log('entered getplace for sign')
   }
-  CoordsFunction();
-  // if(Lat && Long)
+
   return (
     //rendering location deny page 
     <div style={{backgroundColor: '#171717'}}>
@@ -77,10 +51,11 @@ const LocationDenyPage = (props) => {
           <StyleDivElement>
             <SpotlightXBrand data={props.data}/>
             <hr/>
-            { coordsInfo ? 
-            <LocationDenyCard CoordsFunction={CoordsFunction} data={props.data}/>
+            {/* <LocationDenyCard onSubmit={getPlace}/> */}
+            { !newLocation ? 
+            <LocationDenyCard onSubmit={getPlace}/>
             :
-            <ManualLocation collectiveProps={collectiveProps} />              
+            <ManualLocation location = {newLocation} data={props.data}/>              
             }
             {/* <ManualLocation /> */}
             <Usp data={props.data}/>

@@ -1,9 +1,9 @@
 // how to remove current url in reactjs?
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { Link, useParams} from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 // import StoreFoundCard from './StoreFoundCard';
-import axios from 'axios';
+// import axios from 'axios';
 // import {useSearchParams} from 'react-router-dom';
 
 
@@ -11,6 +11,8 @@ import axios from 'axios';
 
 const LocationDenyCard = (props) => {  
   let brand = useParams();
+  const [place, setPlace] = useState('');
+  // let [coordinates, setCoordinates] = useState({Lat : '', Long : ''})
   // navigate(`${data.brand.brandName}/Stores`)
   // let NBrand = useParams();
   // const brand = useParams();
@@ -36,23 +38,28 @@ const LocationDenyCard = (props) => {
     
     // setPlace(place1)
     
-    function ButtonFunc(){
-      axios.get(`https://api.geoapify.com/v1/geocode/search?text=kota&format=json&apiKey=10ff75a41458452486c224643ce04ee3`).then(res => {
-      let newLat, newLong;
-      let Coordinates = {
-        lat : '',
-        long : ''
-      }
-      newLat = res.data.results[0].lat
-      newLong = res.data.results[0].lon
-      console.log(newLat)
-      console.log(newLong)
-      // Coordinates(lat = newLat,long = newLong);
-      Coordinates.lat = newLat;
-      Coordinates.long = newLong;
-      props.CoordsFunction(Coordinates)
-  })
-  }
+  //   function ButtonFunc(){
+  //     axios.get(`https://api.geoapify.com/v1/geocode/search?text=kota&format=json&apiKey=10ff75a41458452486c224643ce04ee3`).then(res => {
+  //     let newLat, newLong;
+  //     let Coordinates = {
+  //       lat : '',
+  //       long : ''
+  //     }
+  //     newLat = res.data.results[0].lat
+  //     newLong = res.data.results[0].lon
+  //     // let Coordinates = [newLat, newLong]
+  //     // let Coordinates = {Lat : '', Long : ''}
+  //     Coordinates = {lat : newLat, long : newLong}
+  //     console.log(Coordinates.lat)
+  //     console.log(Coordinates.long)
+  //     // console.log(newLat)
+  //     // console.log(newLong)
+  //     // Coordinates(lat = newLat,long = newLong);
+  //     // Coordinates[0] = newLat;
+  //     // Coordinates[1] = newLong;
+  //     props.CoordsFunction(Coordinates)
+  // })
+  // }
   
   // Coordinates.lat = newLat;
   // Coordinates.long = newLong;
@@ -69,30 +76,23 @@ const LocationDenyCard = (props) => {
   // }
   // console.log(brand.brandName);
 
-  
+  const handleChange = (e) => {
+    setPlace(e.target.value)
+    console.log(place)
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.onSubmit(place);
+  }
 
   return (
     <StyleDivElement>
-        {/* <div className='card'>
-            <p className='one'>Well, that’s one way to go about it!</p>
-            <hr/>
-            <p className='two'>Unfortunately, we can’t show stores near you if you deny location permission.</p>
-            <hr/>
-            <p className='three'>Everyone deserves a second chance. 
-              <a href="https://support.google.com/chrome/answer/142065">This is how </a> you can enable location permission 
-              again to find stores nearest to you.
-            </p>
-        </div> */}
-        <div className='card'>
-          <p>Visit the nearest store for <br/> <i> exclusive deals </i> </p>
-          <input className='input' placeholder='Enter your location' type="text"/>
-          {/* <input className='input' placeholder='Enter your location' type="text" value={place} onChange={takeInput}/> */}
-          {/* <Link to={`/${brand.brandName}/Stores`}><button>Button</button></Link> */}
-          <input type='submit' value='submit' onClick={ButtonFunc}/>
-          {/* <button onSubmit={()=>ButtonFunc()}>Submit</button> */}
-          {/* <ManualLocation Coords={Coords}/> */}
-          
-        </div>
+      <div className='card'>
+        <form className='form' onSubmit={handleSubmit} >
+          <input className='input' type='text' value={place} onChange={handleChange} placeholder='Enter your location'/>
+          <button className='button' type='submit'><span>Submit</span></button>
+        </form>                     
+      </div>
     </StyleDivElement>
   )
 }
@@ -100,7 +100,7 @@ const LocationDenyCard = (props) => {
 
 
 const StyleDivElement = styled('div')`
-    .card{
+  .card{
     margin:  20px;
     padding: 20px 0;
     box-sizing: border-box;
@@ -109,91 +109,70 @@ const StyleDivElement = styled('div')`
     border-radius: 5px;
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.2);
-    
-    p{
-      text-align: center;
-      margin: 0;
-      margin-top: 10px;
-      font-size: 20px;
-      margin-bottom: 19px;
-      padding: 0;
-      i{
-        font-weight: 700;
-        color: #F38137;
-        font-size: 18px;
-        margin-top: 10px;
-      }
-    }
-    .input{
-      border-radius: 12px;
-      width: 75%;
-      display: block;
-      text-align: center;
-      padding: 9px;
+
+
+    .form{
+      display: flex;
+      flex-direction: column;
+      width: 90%;
       margin: auto;
-      font-weight: 600;
-      font-size: 18px;
-      text-transform: none;
-      color: black;
-      font-family: 'Poppins', sans-serif;
-      background-color: #fff;
-      border-width: 0; 
-      outline: none;
-    }
-    
-    
-    ${'' /* p{
-      margin: 20px 30px;
-    } */}
+      justify-content: center;
+      align-items: center;
 
-   .one{
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 36px;
-    /* or 112% */
 
-    text-align: center;
-
-    background: linear-gradient(90deg, #B89FFF 0%, #FF9BC1 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    
-
-   }
-   .two{
-    font-weight: 400;
-    font-size: 18px;
-    text-align: center;
-    color: #FFFFFF;
-   }
-   .three{
-    font-style: italic;
-    font-weight: 400;
-    font-size: 11px;
-    text-align: center;
-    color: #ADADAD;
-    a{
-      color: #ADADAD;
-    }
-   }
-    button{
-      background: linear-gradient(90deg, #3F0BDB 0%, #FF0C67 100%);
-      border-radius: 5px;
-      margin: 10px 20px 20px 20px;
-      font-weight: 600;
-      font-size: 16px;
-      text-transform: none;
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
-
-      img{
-        width: 24px;
-        height: 24px;
-        margin-right: 5px;
+      .input{
+        width: 65%;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin: 1rem;
+        padding: 0.7rem;
+        border-width: 0; 
+        outline: none;
+        border-radius: 10px;
+        text-align: center;
+      }
+      
+      button{
+        background: linear-gradient(-45deg, /*#FCB69F,*/#c90076,#662D8C,/*#ED1E79,*/#FCB69F,#c90076,#ED1E79/*,#FCB69F*/);  
+      background-size: 600%;
+      border-radius: 10px;
+      ${'' /* margin: 10px 20px 25px 10px; */}
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      width: 65%;
+      border-width: 0;
+      padding: 0.7rem;
+      border: none;
+      
+      animation: anime 16s linear infinite;
+      span{
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #fff;
+        font-family: 'Poppins', sans-serif; 
+        text-decoration: none;
+        padding: 8px 0;
+        position: relative;
+        text-transform: capitalize;
       }
     }
+    button:hover{
+      transform: scale(1.1);
+    }
+    }    
+  
+    @keyframes anime{
+      0%{
+        background-position: 0% 50%;
+      }
+      50%{
+        background-position: 100% 50%;
+      }
+      100%{
+        background-position: 0% 50%;
+      }
+    } 
   }
-
-`;
-export default LocationDenyCard
+    `;
+export default LocationDenyCard;

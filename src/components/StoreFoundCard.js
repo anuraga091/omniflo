@@ -158,8 +158,6 @@ const StyleDivElement = styled('div')`
         font-size: 16px;
         color: #fff;
         font-family: 'Poppins', sans-serif; 
-      font-family: 'Poppins', sans-serif; 
-        font-family: 'Poppins', sans-serif; 
         text-decoration: none;
         padding: 8px 0;
         position: relative;
@@ -168,13 +166,13 @@ const StyleDivElement = styled('div')`
     }
     @keyframes anime {
         0%{
-        background-position: 0% 50%
+        background-position: 0% 50%;
         }
         50%{
-        background-position: 100% 50%
+        background-position: 100% 50%;
         }
         100%{
-        background-position: 0% 50%
+        background-position: 0% 50%;
         }
     }
 }
