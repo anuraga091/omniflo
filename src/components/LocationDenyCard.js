@@ -2,79 +2,11 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { useParams} from 'react-router-dom';
-// import StoreFoundCard from './StoreFoundCard';
-// import axios from 'axios';
-// import {useSearchParams} from 'react-router-dom';
-
-
 
 
 const LocationDenyCard = (props) => {  
   let brand = useParams();
-  const [place, setPlace] = useState('');
-  // let [coordinates, setCoordinates] = useState({Lat : '', Long : ''})
-  // navigate(`${data.brand.brandName}/Stores`)
-  // let NBrand = useParams();
-  // const brand = useParams();
-  // const brandDetailURL = `https://api.omniflo.in/getbranddata?brandname=${brand.brandName}`
-
-  
-
-                    // let place1;
-                     // const [place, setPlace] = useState('');
-  // const [Coordinates, setCoordinates] = useState({
-    //   lat:'',
-    //   long:''
-    // });
-    // let Coordinates = {
-    //   lat : '',
-    //   long : ''
-    // }
-    // let city = 'Kota';
-    
-                // function takeInput(e){
-                //   place1 = (e.target.value);
-                // }
-    
-    // setPlace(place1)
-    
-  //   function ButtonFunc(){
-  //     axios.get(`https://api.geoapify.com/v1/geocode/search?text=kota&format=json&apiKey=10ff75a41458452486c224643ce04ee3`).then(res => {
-  //     let newLat, newLong;
-  //     let Coordinates = {
-  //       lat : '',
-  //       long : ''
-  //     }
-  //     newLat = res.data.results[0].lat
-  //     newLong = res.data.results[0].lon
-  //     // let Coordinates = [newLat, newLong]
-  //     // let Coordinates = {Lat : '', Long : ''}
-  //     Coordinates = {lat : newLat, long : newLong}
-  //     console.log(Coordinates.lat)
-  //     console.log(Coordinates.long)
-  //     // console.log(newLat)
-  //     // console.log(newLong)
-  //     // Coordinates(lat = newLat,long = newLong);
-  //     // Coordinates[0] = newLat;
-  //     // Coordinates[1] = newLong;
-  //     props.CoordsFunction(Coordinates)
-  // })
-  // }
-  
-  // Coordinates.lat = newLat;
-  // Coordinates.long = newLong;
-  
-
-  // let Coords = [lat,long];
-  // function CoordsFunction(){
-    // props.CoordsFunction(Coordinates)
-  // }
-
-
-  // const onInputChange = (e) => {
-  //   setInput(...input)
-  // }
-  // console.log(brand.brandName);
+  const [place, setPlace] = useState('');  
 
   const handleChange = (e) => {
     setPlace(e.target.value)

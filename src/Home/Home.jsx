@@ -5,10 +5,10 @@ import { styled } from '@mui/material';
 const Home = () => {
   return (
     
-    <StyleDiv style={{/*backgroundColor: '#171717',*/ background: `url('/images/Bg_img.png')`, height: '100vh', backgroundSize:'100% 100%'/*, backgroundSize: 'cover'*/}}>
+    <StyleDiv style={{ background: `url('/images/Bg_img.png')`, height: '100vh', backgroundSize:'100% 100%'/*, backgroundSize: 'cover'*/}}>
       <p className='header'><a href="/">Spotlight</a></p>
       <p className='body'>Your<br/>Favourite Brands<br/> Near You</p>
-      {/* <p className='body'>Your Favourite Brands Near You</p> */}
+      {/* <p className='anchor'><a href={encodeURI("/Spicestory")}>Gladful</a></p> */}
       <p className='anchor'><a href={encodeURI("/Gladful")}>Gladful</a></p>
     </StyleDiv>
     
