@@ -5,6 +5,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
 import { styled, Button } from "@mui/material";
 import * as geolib from "geolib";
+import { ButtonAnimationComponent } from "./ButtonAnimationComponent";
 
 export const MainButton = ({ data }) => {
   const brand = useParams();
@@ -80,14 +81,14 @@ export const MainButton = ({ data }) => {
   };
 
   return (
-    <div className="bg-[#613DE5] p-2 pt-[3rem] m-[5%] rounded-lg relative w-[90%] h-[50vh] sm:h-[27rem]">
+    <div className="bg-[#613DE5] p-2 pt-[3rem] m-[5%] rounded-lg relative w-[90%] h-[60vh] min-h-[480px] sm:h-[27rem]">
       <img
         src="/images/Left Dots.png"
-        className="absolute left-[2%] top-[5%] w-[9.5%]"
+        className="absolute left-[2%] top-[2%] h-[93%]"
       />
       <img
         src="/images/Right Dots.png"
-        className="absolute right-[2%] top-[5%] w-[9.5%]"
+        className="absolute right-[2%] top-[2%] h-[93%]"
       />
       <img
         src="/images/star.png"
@@ -95,10 +96,10 @@ export const MainButton = ({ data }) => {
       />
       <img
         src="/images/2 stars.png"
-        className="absolute right-[20%] top-[5%] w-[13%]"
+        className="absolute right-[15%] top-[2%] w-[13%]"
       />
 
-      <div className="w-[20%] h-[18%] bg-white p-[3.5%] rounded-[50%] border-[1px] border-black left-[30%] top-[10.5%] absolute">
+      <div className="w-[25%] h-[18%] bg-white p-[3.5%] rounded-[50%] border-[1px] border-black left-[30%] top-[10.5%] absolute sm:w-[22%]">
         <img
           className=" w-[100%] h-[100%]"
           src="/images/new Logo.png"
@@ -106,7 +107,7 @@ export const MainButton = ({ data }) => {
         />
       </div>
 
-      <div className="w-[20%] h-[18%] bg-white p-[3%] rounded-[50%] border-[1px] border-black z-10 absolute left-[46%] top-[10.5%]">
+      <div className="w-[25%] h-[18%] bg-white p-[3%] rounded-[50%] border-[1px] border-black z-10 absolute left-[49%] top-[10.5%] sm:w-[22%]">
         <img className=" w-[100%] h-[100%] " src={data.brandLogo} alt="/" />
       </div>
 
@@ -118,18 +119,27 @@ export const MainButton = ({ data }) => {
       </p>
 
       <hr className=" rounded border-t-4 border-[white] absolute top-[51%] left-[25%] bg-gray-200 dark:bg-white" />
-      <p className="w-[50%] m-auto absolute top-[58%] left-[25%]">
-        Visit the nearest store{" "}
+      <p className=" relative top-[54%] w-[80%] m-auto text-center">
+        Visit the nearest store
       </p>
-      <p className="w-[50%] m-auto absolute top-[63%] left-[28%]">
-        for exclusive deals{" "}
+      <p className="w-[80%] m-auto text-center relative top-[54%]">
+        for exclusive deals
       </p>
+      {/* <p className="w-[50%] m-auto relative top-[58%] left-[25%] sm:left-[35%]">
+        Visit the nearest store left-[25%] sm:left-[50%]
+      </p> */}
+      {/* <p className="w-[50%] m-auto absolute top-[63%] left-[28%]">
+        for exclusive deals
+      </p> */}
 
       <button
-        className="bg-[#FCD439] text-black px-4 py-4 block w-[65%] m-auto rounded-lg text-center absolute top-[78%] left-[17.5%] "
+        className="bg-[]  text-black px-4 py-4 block w-[65%] m-auto rounded-lg text-center absolute top-[78%] left-[17.5%] "
         onClick={ShowLocationPopUp}
+        id="button"
       >
-        Find a store near me <ArrowForwardIcon fontSize="small" />{" "}
+        Take me there
+        <ArrowForwardIcon fontSize="small" />
+        {/* <ButtonAnimationComponent /> */}
       </button>
     </div>
   );

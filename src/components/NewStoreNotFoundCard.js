@@ -5,11 +5,15 @@ import * as geolib from "geolib";
 import { useState } from "react";
 import { formInput } from "../services/api";
 import { useParams } from "react-router-dom";
+import { Modal } from "./Modal";
+import { LoadComponent } from "./LoadComponent";
 
-const StoreNotFoundCard = ({ data }) => {
+const NewStoreNotFoundCard = ({ data }) => {
   const brand = useParams();
   const [setMessage] = useState("");
   const [error, setError] = useState(null);
+  let [isOpen, setIsOpen] = useState(true);
+  const [fullname, setFullName] = useState("");
 
   const [setPhoneMessage] = useState("");
   const [phoneError, setPhoneError] = useState(null);
@@ -70,7 +74,6 @@ const StoreNotFoundCard = ({ data }) => {
   };
 
   var findDistance = new Promise(function (resolve, reject) {
-    //getting geoLocation of the user from navigator
     navigator.geolocation.getCurrentPosition((Location) => {
       //intializing dist as object and first input as key-value pair of storeDistance with empty string
       const dist = { storeDistance: "", Location };
@@ -105,7 +108,6 @@ const StoreNotFoundCard = ({ data }) => {
           return a.storeDistance - b.storeDistance;
         });
 
-        //updating data.stores with sorted data.stores
         data.stores = byDistance;
         resolve(data);
       }
@@ -118,15 +120,6 @@ const StoreNotFoundCard = ({ data }) => {
   findDistance.then(function (value) {
     setBrandData(newData);
   });
-
-  // console.log(brandData)
-
-  // const myStyle = {
-  //   label:focus-within{
-  //     margin = '10px'
-  //   }
-  // } style={myStyle}
-
   // getting all the inputs from the form
   const onInputChange = (e) => {
     setInput({
@@ -141,34 +134,52 @@ const StoreNotFoundCard = ({ data }) => {
   //submitting and sending all the form data on backend and database
   const handleClick = async () => {
     let response = await formInput(input);
+    setFullName(response?.data?.data?.fullname);
     console.log(response);
+    console.log(
+      "response?.data?.data?.fullname",
+      response?.data?.data?.fullname
+    );
+
     toggleCard(cardInitialValues.thanks);
   };
 
   return (
     //rendering store not found card component
-    <StyleDivElement>
+    <div className=" bg-[#000000] py-[2%]">
+      <p className="text-[1.5rem] ml-[5%]">We've found this store.</p>
       {card.view === "form" ? (
         brandData && brandData.stores ? (
-          <div className="card">
-            <p className="store">THE NEAREST STORE IS</p>
-            <p className="distance">
-              {brandData.stores[0].storeDistance}km Away
+          <div className="card bg-[#5E5BF2] rounded-xl m-[5%] pb-[5%]">
+            <img
+              src="/images/arrow.png"
+              className="w-[30%] sm:w-[20%] m-auto py-[10%]"
+            />
+            <p className="store text-[1rem] tracking-[4px] text-center">
+              THE NEAREST STORE IS
             </p>
-            <hr className="hr2" />
-            <p className="text1">How Far Will You Go for Love? </p>
-            <p className="text2">
-              Instead, let us Notify you when we launch near you.{" "}
+            <p className="text-center font-bold text-[2.5rem] mt-4 leading-[3rem] text-[#FFFFFF]">
+              {brandData.stores[0].storeDistance} km Away
             </p>
-            <StyleTextFiled
+            {/* <hr className="hr2" /> */}
+            <p className="text-center font-medium text-[1.25rem] leading-6 mt-4">
+              How Far Will You Go for Love?
+            </p>
+            <p className="text-center text-[0.9rem] leading-6 mt-4">
+              Instead, let us Notify you when
+              <br />
+              we launch near you.
+            </p>
+            <input
               id="outlined-basic"
               onChange={(e) => onInputChange(e)}
               name="fullname"
               placeholder="Full Name"
               /*label="Full name"*/ variant="outlined"
               size="small"
+              className="bg-[#2D2C73] block w-[80%] m-auto my-4 mt-8 p-[0.5rem] rounded-lg"
             />
-            <StyleTextFiled
+            <input
               id="outlined-basic"
               onChange={(e) => {
                 onInputChange(e);
@@ -178,13 +189,14 @@ const StoreNotFoundCard = ({ data }) => {
               placeholder="Phone number"
               /*label="Phone number"*/ variant="outlined"
               size="small"
+              className="bg-[#2D2C73] block w-[80%] m-auto my-4 p-[0.5rem] rounded-lg"
             />
             {phoneError && (
               <p style={{ color: "red", margin: 0, padding: 0 }}>
                 {phoneError}
               </p>
             )}
-            <StyleTextFiled
+            <input
               id="outlined-basic"
               onChange={(e) => {
                 onInputChange(e);
@@ -194,193 +206,64 @@ const StoreNotFoundCard = ({ data }) => {
               placeholder="Email"
               /*label="Email"*/ variant="outlined"
               size="small"
+              className="bg-[#2D2C73] block w-[80%] m-auto my-4 p-[0.5rem] rounded-lg"
             />
             {error && (
               <p style={{ color: "red", margin: 0, padding: 0 }}>{error}</p>
             )}
-            <Button
-              className="Button-discount"
+            <button
+              className="bg-[#FCD439] text-[#000000] w-[85%] p-[0.75rem] my-6 rounded-lg block mx-auto mb-4"
               onClick={() => {
                 handleClick();
               }}
             >
-              <img src="../images/discount.svg" alt="icon" /> Get 25% off on
-              Launch{" "}
-            </Button>
+              <span>Get 25% off on Launch</span>
+              <img src="../images/discount.svg" alt="icon" className="inline" />
+            </button>
           </div>
         ) : (
-          ""
+          <LoadComponent />
         )
       ) : (
-        <div className="card">
-          <h4 style={{ margin: 5, padding: "0px 10px" }}>Congratulations!</h4>
-          <hr />
-          <p style={{ margin: 10, paddingRight: 10, paddingLeft: 10 }}>
+        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+          <img
+            src="/images/Success.png"
+            className="w-[60%] h-[30%] my-6 block mx-auto"
+          />
+          <p className="text-[2rem] font-bold text-center m-2">
+            Congratulations! {fullname}
+          </p>
+          <p className="text-[1.25rem] text-center font-semibold p-2">
             You’ll be the first one to be notified when we launch in Bangalore
           </p>
-          <Button className="Button-insta">
+          <button
+            className="bg-[#FCD439] p-4 rounded-lg w-[60%] my-[8%] block mx-auto text-[black] font-medium text-[1.15rem]"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
             <a href="https://www.instagram.com/shoponspotlight/">
-              <img src="/images/instagram.svg" alt="instagram" />
-              &nbsp; Follow on Instagram
+              <span className="">Follow us on Instagram</span>
             </a>
-          </Button>
-        </div>
+          </button>
+        </Modal>
       )}
-    </StyleDivElement>
+    </div>
   );
 };
 
-const StyleTextFiled = styled(TextField)`
-  border-radius: 12px;
-  width: 75%;
-  margin: 10px 20px 20px 20px;
-  font-weight: 600;
-  font-size: 16px;
-  text-transform: none;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  background-color: #fff;
-  ${
-    "" /* input:focus label{
-      margin: -10px;
-    }  */
-  }
-  ${
-    "" /* label{
-      margin: -10px;
-    } */
-  }
-`;
+export default NewStoreNotFoundCard;
 
-const StyleDivElement = styled("div")`
-  .card {
-    ${"" /* width: 90%; */}
-    margin:  20px;
-    ${"" /* margin: auto; */}
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    ${"" /* box-sizing: border-box; */}
-    background: linear-gradient(180deg, rgba(58, 58, 58, 0.7) 5.22%, rgba(72, 72, 72, 0.4) 94.94%);
-    backdrop-filter: blur(12px);
-    border-radius: 5px;
-    border-width: 1px;
-    border-color: rgba(255, 255, 255, 0.2);
-
-    .Button-discount {
-      width: 75%;
-      border-radius: 10px;
-    }
-
-    .Button-insta {
-      width: 80%;
-      border-radius: 10px;
-      font-size: 20px;
-    }
-
-    p {
-      text-align: center;
-    }
-    a {
-      text-decoration: none;
-      color: #fff;
-    }
-    h4 {
-      font-weight: 600;
-      font-size: 32px;
-      line-height: 36px;
-      /* or 112% */
-
-      text-align: center;
-
-      background: linear-gradient(90deg, #b89fff 0%, #ff9bc1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    hr {
-      width: 50%;
-      height: 0px;
-      margin: auto;
-      background: rgba(217, 217, 217, 0.6);
-      opacity: 0.2;
-      border: 1px solid #adadad;
-    }
-
-    .distance {
-      font-weight: 600;
-      font-size: 32px;
-      line-height: 24px;
-      text-transform: capitalize;
-      background: linear-gradient(90deg, #b89fff 0%, #ff9bc1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      padding: 10px;
-      margin-bottom: 0;
-    }
-    .text1 {
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 24px;
-      margin-bottom: 0;
-    }
-    .text2 {
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 20px;
-      padding: 0 40px;
-      margin-top: 5px;
-    }
-    .store {
-      font-weight: 400;
-      font-size: 11px;
-      line-height: 16px;
-      margin: 0;
-    }
-    .hr2 {
-      width: 218px;
-      height: 0px;
-      margin: 10px auto;
-      background: rgba(217, 217, 217, 0.6);
-      opacity: 0.2;
-      border: 1px solid #adadad;
-    }
-    button {
-      background: linear-gradient(-45deg, #ffa63d, #3f0bdb, #ff0c67, #338aff);
-      background-size: 600%;
-      border-radius: 20px;
-      margin: 10px 20px 20px 20px;
-      font-weight: 600;
-      font-size: 16px;
-      text-transform: none;
-      color: #fff;
-      font-family: "Poppins", sans-serif;
-      text-decoration: none;
-      padding: 10px 0;
-      position: relative;
-      animation: anime 16s linear infinite;
-
-      img {
-        width: 24px;
-        height: 24px;
-        margin-right: 5px;
-      }
-    }
-  }
-
-  @keyframes anime {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-`;
-
-export default StoreNotFoundCard;
+// {/* <div className="card">
+//   <h4 style={{ margin: 5, padding: "0px 10px" }}>Congratulations!</h4>
+//   <hr />
+//   <p style={{ margin: 10, paddingRight: 10, paddingLeft: 10 }}>
+//     You’ll be the first one to be notified when we launch in Bangalore
+//   </p>
+//   <Button className="Button-insta">
+//     <a href="https://www.instagram.com/shoponspotlight/">
+//       <img src="/images/instagram.svg" alt="instagram" />
+//       &nbsp; Follow on Instagram
+//     </a>
+//   </Button>
+// </div>; */}

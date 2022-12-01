@@ -11,6 +11,7 @@ import StoreNotFoundCard from "../../../components/StoreNotFoundCard";
 import Usp from "../../../components/Usp";
 import Footer from "../../../components/Footer";
 import { Carousal } from "../../../components/Carousal";
+import NewStoreNotFoundCard from "../../../components/NewStoreNotFoundCard";
 
 const StoreNotFound = (props) => {
   const brand = useParams();
@@ -25,29 +26,10 @@ const StoreNotFound = (props) => {
 
   return (
     //rendering brand stores not found page
-    <div style={{ backgroundColor: "#171717" }}>
-      <Header />
-      <StyleDivElement>
-        <SpotlightXBrand data={props.data} />
-        <hr className="hr1" />
-        <StoreNotFoundCard data={props.data} />
-        {/* <Usp data={props.data}/> */}
-        <Carousal />
-        <Footer />
-      </StyleDivElement>
+    <div className="bg-[#000000] h-[100vh]">
+      <NewStoreNotFoundCard data={props.data} />
     </div>
   );
 };
-
-const StyleDivElement = styled("div")`
-  .hr1 {
-    width: 50%;
-    height: 0px;
-    margin: auto;
-    background: rgba(217, 217, 217, 0.6);
-    opacity: 0.2;
-    border: 1px solid #adadad;
-  }
-`;
 
 export default StoreNotFound;
